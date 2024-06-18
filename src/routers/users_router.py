@@ -1,35 +1,27 @@
-from typing import Annotated
-
-from fastapi import APIRouter, Depends
+from typing import List
+from fastapi import APIRouter, Path, Security
+from schemas.user_schema import UserCreateSchema, UserResponseSchema
+from controllers.user_controller import create_user, get_all_users, get_user, update_user, delete_user
+from routers.auth_router import oauth2_scheme
 
 user_router = APIRouter()
 
-@user_router.get('/sellers', tags=['Users'])
-def get_sellers( start_date: str, end_date: str ):
-    return f"Usuarios creados entre {start_date} and {end_date}"
+@user_router.get('/all', tags=['Banner'], response_model=List[UserResponseSchema])
+async def all():
+    return await get_all_users()
 
-def common_params(start_date: str, end_date: str):
-    return { "start_date": start_date, "end_date": end_date }
+@user_router.get('/show/{id}', tags=['Banner'], response_model=UserResponseSchema)
+async def show(id: int):
+    return await get_user(id)
 
-@user_router.get('/customers', tags=['Users'])
-def get_customers(commons: dict = Depends(common_params)):
-    return f"CLientes creados entre {commons['start_date']} and {commons['end_date']}"
+@user_router.post('/create', tags=['Banner'], response_model=UserResponseSchema)
+async def creater(data: UserCreateSchema, token: str = Security(oauth2_scheme)):
+    return await create_user(data)
 
-@user_router.get('/users', tags=['Users'])
-def get_users( commons: Annotated[dict, Depends(common_params)]):
-    return f"Usuarios creados entre {commons['start_date']} and {commons['end_date']}"
+@user_router.put('/update/{id}', tags=['Banner'], response_model=UserResponseSchema)
+async def updater(id: int, data: UserCreateSchema, token: str = Security(oauth2_scheme)):
+    return await update_user(id, data)
 
-CommonDep = Annotated[dict, Depends(common_params)]
-
-@user_router.get('/buyers', tags=['Users'])
-def get_buyers( commons: CommonDep ):
-    return f"Usuarios creados entre {commons['start_date']} and {commons['end_date']}"
-
-class CommonDeps:
-    def __init__(self, start_date: str, end_date: str) -> None:
-        self.star_date = start_date
-        self.end_date = end_date
-        
-@user_router.get('/uzers', tags=['Users'])
-def get_uzers( commons: CommonDeps = Depends() ):
-    return f"Uzuarios creados entre {commons.star_date} and {commons.end_date}"
+@user_router.delete('/delete/{id}', tags=['Banner'], response_model=UserResponseSchema)
+async def deleter(id: int, token: str = Security(oauth2_scheme)):
+    return await delete_user(id)

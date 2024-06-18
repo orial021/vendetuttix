@@ -14,4 +14,3 @@ def go_home():
 def home():
 #def home(request: Request):
     return PlainTextResponse('Esta es la pagina de inicio')
-    #return templates.TemplateResponse('base.html', { 'request': request, 'message': 'Welcome'})
