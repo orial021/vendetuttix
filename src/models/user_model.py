@@ -5,10 +5,10 @@ from schemas.user_schema import RoleEnum
 
 class User(Model):
     id = fields.IntField(pk=True)
-    username = fields.CharField
-    password = fields.CharField
-    email = fields.CharField
-    name = fields.CharField
+    username = fields.CharField(max_length=8)
+    password = fields.CharField(max_length=12)
+    email = fields.CharField(max_length=12)
+    name = fields.CharField(max_length=20)
     rol = fields.CharEnumField(RoleEnum)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now=True)
