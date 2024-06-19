@@ -3,12 +3,13 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class Content(BaseModel):
+class Reviews(BaseModel):
     id : int
     title : str
     description : str
-    url : Optional[str]
-    image_url : Optional[str]
+    qualification : int
+    user_id : int
+    related_product : Optional[int]
     
     
     
@@ -18,18 +19,19 @@ class Content(BaseModel):
                 'id': 1,
                 'title' : 'Content1',
                 'description' : 'description',
-                'url' : 'www.urlcontent.com',
-                'image_url': 'imagen1.jpg',
+                'qualification' : 4,
+                'user_id' : 12,
+                'related_products' : 85
             }
         }
     }
 
-class ContentCreateSchema(BaseModel):
-    title: str
-    image_url: str
-    description: str
-    url : str | None = None
-    image_url : str | None = None
+class ReviewsCreateSchema(BaseModel):
+    title : str
+    description : str
+    qualification : int
+    user_id : int
+    related_product : Optional[int]
     
     model_config = {
         'json_schema_extra':{
@@ -37,13 +39,15 @@ class ContentCreateSchema(BaseModel):
                 'id': 1,
                 'title' : 'Content1',
                 'description' : 'description',
-                'url' : 'www.urlcontent.com',
-                'image_url': 'imagen1.jpg',
+                'qualification' : 4,
+                'user_id' : 12,
+                'related_products' : 85
             }
         }
     }
     
-class ContentResponseSchema(ContentCreateSchema):
+    
+class ReviewsResponseSchema(ReviewsCreateSchema):
     id: int
     created_at: datetime
     updated_at: datetime
@@ -55,8 +59,9 @@ class ContentResponseSchema(ContentCreateSchema):
                 'id': 1,
                 'title' : 'Content1',
                 'description' : 'description',
-                'url' : 'www.urlcontent.com',
-                'image_url': 'imagen1.jpg',
+                'qualification' : 4,
+                'user_id' : 12,
+                'related_products' : 85
             }
         }
     }
