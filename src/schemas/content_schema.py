@@ -3,36 +3,36 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class Banner(BaseModel):
+class Content(BaseModel):
     id : int
     title : str
-    image_url : str
-    content : str
-    status : Optional[bool]
-    click_count : Optional[int]
+    description : str
+    url : Optional[str]
+    image_url : Optional[str]
+    
+    
     
     model_config = {
         'json_schema_extra':{
             'example':{
                 'id': 1,
-                'title' : 'Banner1',
+                'title' : 'Content1',
+                'description' : 'description',
+                'url' : 'www.urlcontent.com',
                 'image_url': 'imagen1.jpg',
-                'content': 'lorem ipsum',
-                'status' : 'True',
-                'click_count' : '10'
             }
         }
     }
 
-class BannerCreateSchema(BaseModel):
+class ContentCreateSchema(BaseModel):
     title: str
     image_url: str
-    content: str
-    status: bool | None = None 
-    click_count: int | None = None
+    description: str
+    url : str | None = None
+    image_url : str | None = None
     
     
-class BannerResponseSchema(BannerCreateSchema):
+class ContentResponseSchema(ContentCreateSchema):
     id: int
     created_at: datetime
     updated_at: datetime
@@ -42,11 +42,10 @@ class BannerResponseSchema(BannerCreateSchema):
         'json_schema_extra':{
             'example':{
                 'id': 1,
-                'title' : 'Banner1',
+                'title' : 'Content1',
+                'description' : 'description',
+                'url' : 'www.urlcontent.com',
                 'image_url': 'imagen1.jpg',
-                'content': 'lorem ipsum',
-                'status' : 'True',
-                'click_count' : '10'
             }
         }
     }

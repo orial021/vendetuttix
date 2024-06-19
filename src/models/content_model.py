@@ -2,13 +2,12 @@ from tortoise import fields
 from tortoise.models import Model
 
 
-class Banner(Model):
+class Content(Model):
     id = fields.IntField(pk=True)
-    title = fields.CharField(max_length=100)
-    image_url = fields.TextField()
-    content = fields.TextField()
-    status = fields.BooleanField(null = True)
-    click_count = fields.IntField(null = True)
+    title = fields.CharField(max_length=255)
+    description = fields.TextField()
+    url = fields.CharField(max_length=255, null=True)
+    image_url = fields.CharField(max_length=255, null=True)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now=True)
     deleted_at = fields.DatetimeField(auto_now = True, null = True)
@@ -17,4 +16,4 @@ class Banner(Model):
         return self.title
     
     class Meta:
-        table = "banner"
+        table = "content"
