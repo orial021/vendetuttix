@@ -2,20 +2,21 @@ from tortoise import fields
 from tortoise.models import Model
 
 
-class Reviews(Model):
+class Contact(Model):
     id = fields.IntField(pk=True)
-    title = fields.CharField(max_length=255)
-    description = fields.TextField()
-    qualification = fields.IntField(ge = 1, le = 5)
     user_id = fields.IntField()
-    related_product = fields.IntField(null = True)
+    name = fields.CharField(max_length=255)
+    email = fields.CharField(max_length=255, null=True)
+    phone = fields.CharField(max_length=20, null=True)
+    message = fields.TextField()
+    subject = fields.CharField(max_length=100, null=True)
     
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now=True)
     deleted_at = fields.DatetimeField(auto_now = True, null = True)
 
     def __str__(self):
-        return self.title
+        return self.name
     
     class Meta:
-        table = "reviews"
+        table = "contact"
