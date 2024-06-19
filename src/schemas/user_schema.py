@@ -43,3 +43,16 @@ class UserResponseSchema(UserCreateSchema):
     created_at: datetime
     updated_at: datetime
     deleted_at: datetime | None = None
+    
+    model_config = {
+        'json_schema_extra':{
+            'example':{
+                'id': 1,
+                'username' : 'usuario1',
+                'password' : '123456',
+                'email' : 'usuario@12345.com',
+                'name' : 'nombre de usuario',
+                'rol' : 'client'
+            }
+        }
+    }

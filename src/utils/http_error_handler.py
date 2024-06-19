@@ -8,23 +8,28 @@ from models.error_log_model import ErrorLog
 class HTTPErrorHandler(BaseHTTPMiddleware):  
     async def dispatch(self, request: Request, call_next):
         try:
+            print("se salta el middle")
             return await call_next(request)
         except HTTPException as http_exc:
-            '''error_info = {
+            print("error http_exc")
+            error_info = {
                 'error_type': 'HTTPException',
                 'message': http_exc.detail,
-                'traceback': '',
+                'traceback': traceback.format_exc()[30:],
                 'url': str(request.url),
+                'status_code': http_exc.status_code,
             }
-            await ErrorLog.create(**error_info)'''
+            await ErrorLog.create(**error_info)
             return JSONResponse(content = {'detail' : http_exc.detail},
                                 status_code = http_exc.status_code)
         except Exception as e:
+            print("error e")
             error_info = {
-                'type': type(e).__name__,
+                'error_type': type(e).__name__,
                 'message': str(e),
-                'traceback': traceback.format_exc(),
+                'traceback': traceback.format_exc()[35:],
                 'url': str(request.url), 
+                'status_code': status.HTTP_500_INTERNAL_SERVER_ERROR
             }
             await ErrorLog.create(**error_info)
             

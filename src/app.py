@@ -1,6 +1,8 @@
 #se inicia usando fastapi dev src/app.py --reload
 #se corren migraciones con aerich migrate
 #se actualizan migraciones en la BD con aerich upgrade
+# auth de usuarios  token: str = Security(oauth2_scheme)
+#auth de admins admin_user: User = Depends(require_admin)
 
 from fastapi import FastAPI
 from routers import routers
@@ -27,7 +29,7 @@ register_tortoise(
     app,
     config = TORTOISE_ORM,
     generate_schemas = True,
-    add_exception_handlers = True
+    add_exception_handlers = False
 )
 
 for router, prefix in routers:

@@ -1,27 +1,35 @@
-from services.user_service import user_service
-from schemas.user_schema import UserCreateSchema
 from fastapi import HTTPException
+from schemas.user_schema import UserCreateSchema
+from models.user_model import User
+from services.user_service import UserService
 
-async def create_user(data: UserCreateSchema):
-    return await user_service.create(data)
+class user_controller:
+    def __init__(self):
+        self.service = UserService(User, UserCreateSchema)
 
-async def get_all_users():
-    return await user_service.get_all()
+    async def create_user(self, data: UserCreateSchema):
+        return await self.service.create(data)
 
-async def get_user(id: int):
-    user = await user_service.get_by_id(id)
-    if user is None:
-        raise HTTPException(status_code=404, detail='not found')
-    return user
+    async def get_all_users(self):
+        return await self.service.get_all()
 
-async def update_user(id: int, data: UserCreateSchema):
-    user = await user_service.update(id, data)
-    if user is None:
-        raise HTTPException(status_code=404, detail='not found')
-    return user
+    async def get_user(self, id: int):
+        user = await self.service.get_by_id(id)
+        if user is None:
+            raise HTTPException(status_code=404, detail='User not found')
+        return user
 
-async def delete_user(id: int):
-    user = await user_service.delete(id)
-    if user is None:
-        raise HTTPException(status_code=404, detail='not found')
-    return user
+    async def update_user(self, id: int, data: UserCreateSchema):
+        user = await self.service.update(id, data)
+        if user is None:
+            raise HTTPException(status_code=404, detail='User not found')
+        return user
+
+    async def delete_user(self, id: int):
+        user = await self.service.delete(id)
+        if user is None:
+            raise HTTPException(status_code=404, detail='User not found')
+        return user
+
+
+user_controller = user_controller()

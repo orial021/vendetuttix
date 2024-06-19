@@ -1,8 +1,9 @@
 from typing import List
-from fastapi import APIRouter, Security
+from fastapi import APIRouter, Depends, Security
+from models.user_model import User
 from schemas.banner_schema import BannerCreateSchema, BannerResponseSchema
 from controllers.banner_controller import create_banner, get_all_banners, get_banner, update_banner, delete_banner
-from routers.auth_router import oauth2_scheme
+from routers.auth_router import oauth2_scheme, require_admin
 
 banner_router = APIRouter()
 
@@ -15,13 +16,13 @@ async def show(id: int):
     return await get_banner(id)
 
 @banner_router.post('/create', tags=['Banner'], response_model=BannerResponseSchema)
-async def creater(data: BannerCreateSchema, token: str = Security(oauth2_scheme)):
+async def creater(data: BannerCreateSchema, admin_user: User = Depends(require_admin)):
     return await create_banner(data)
 
 @banner_router.put('/update/{id}', tags=['Banner'], response_model=BannerResponseSchema)
-async def updater(id: int, data: BannerCreateSchema, token: str = Security(oauth2_scheme)):
+async def updater(id: int, data: BannerCreateSchema, admin_user: User = Depends(require_admin)):
     return await update_banner(id, data)
 
 @banner_router.delete('/delete/{id}', tags=['Banner'], response_model=BannerResponseSchema)
-async def deleter(id: int, token: str = Security(oauth2_scheme)):
+async def deleter(id: int, admin_user: User = Depends(require_admin)):
     return await delete_banner(id)
