@@ -33,16 +33,18 @@ async def decode_token(token: str =  Depends(oauth2_scheme)) -> dict:
 
 def require_admin(user: User = Depends(decode_token)):
     if user.rol != RoleEnum.ADMIN:
-        print(user.rol)
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="You don't have permission to access this resource")
     return user
+
+async def get_user_id(user: User = Depends(decode_token)):
+    return user.id
 
 @auth_router.post('/login', tags=['Auth'])
 async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     user = await User.get_or_none(username=form_data.username)
     if not user or form_data.password != user.password:
-        raise HTTPException(status_code=400, detail='Incorrect username or password')
+        raise HTTPException(status_code=400, detail='Credenciales inválidas')
     token = encode_token({"username": user.username, "email": user.email})
     return { 'access_token': token }
 

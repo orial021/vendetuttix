@@ -15,7 +15,7 @@ class HTTPErrorHandler(BaseHTTPMiddleware):
             error_info = {
                 'error_type': 'HTTPException',
                 'message': http_exc.detail,
-                'traceback': traceback.format_exc()[30:],
+                'traceback': traceback.format_exc()[35:],
                 'url': str(request.url),
                 'status_code': http_exc.status_code,
             }

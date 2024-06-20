@@ -34,7 +34,6 @@ class ContentCreateSchema(BaseModel):
     model_config = {
         'json_schema_extra':{
             'example':{
-                'id': 1,
                 'title' : 'Content1',
                 'description' : 'description',
                 'url' : 'www.urlcontent.com',

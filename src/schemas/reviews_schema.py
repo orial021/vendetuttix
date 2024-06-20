@@ -7,9 +7,9 @@ class Reviews(BaseModel):
     id : int
     title : str
     description : str
-    qualification : int
-    user_id : int
-    related_product : Optional[int]
+    rating : int
+    user_id : int | None = None
+    related_product : int | None = None
     
     
     
@@ -19,9 +19,9 @@ class Reviews(BaseModel):
                 'id': 1,
                 'title' : 'Content1',
                 'description' : 'description',
-                'qualification' : 4,
+                'rating' : 4,
                 'user_id' : 12,
-                'related_products' : 85
+                'related_product' : 85
             }
         }
     }
@@ -29,19 +29,17 @@ class Reviews(BaseModel):
 class ReviewsCreateSchema(BaseModel):
     title : str
     description : str
-    qualification : int
-    user_id : int
-    related_product : Optional[int]
+    rating : int
+    user_id : int | None = None
+    related_product : int | None = None
     
     model_config = {
         'json_schema_extra':{
             'example':{
-                'id': 1,
                 'title' : 'Content1',
                 'description' : 'description',
-                'qualification' : 4,
-                'user_id' : 12,
-                'related_products' : 85
+                'rating' : 4,
+                'related_product' : 85
             }
         }
     }
@@ -59,9 +57,9 @@ class ReviewsResponseSchema(ReviewsCreateSchema):
                 'id': 1,
                 'title' : 'Content1',
                 'description' : 'description',
-                'qualification' : 4,
+                'rating' : 4,
                 'user_id' : 12,
-                'related_products' : 85
+                'related_product' : 85
             }
         }
     }

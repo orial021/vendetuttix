@@ -1,4 +1,5 @@
 from typing import Type, TypeVar, Generic
+from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
 from tortoise.models import Model
 from datetime import datetime
@@ -13,14 +14,19 @@ class CRUDService(Generic[T, M]):
         self.model = model
         self.schema = schema
 
-    async def create(self, data: T):
-        return await self.model.create(**data.model_dump())
+    async def create(self, data_dict: T):
+        print(data_dict)
+        return await self.model.create(**data_dict)
 
     async def get_all(self):
         return await self.model.all()
 
     async def get_by_id(self, id: int):
         return await self.model.get_or_none(id=id)
+    
+    async def get_by_user(self, user_id: int):
+        return await self.model.filter(user_id=user_id).all()
+              
 
     async def update(self, id: int, data: T):
         instance = await self.get_by_id(id)

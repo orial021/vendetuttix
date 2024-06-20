@@ -40,7 +40,6 @@ class ContactCreateSchema(BaseModel):
     model_config = {
         'json_schema_extra':{
             'example':{
-                'id': 1,
                 'user_id' : 15,
                 'name' : 'pedro',
                 'email' : 'pedro@mapache.com',

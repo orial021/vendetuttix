@@ -2,14 +2,23 @@ from services.reviews_service import reviews_service
 from schemas.reviews_schema import ReviewsCreateSchema
 from fastapi import HTTPException
 
-async def create_controller(data: ReviewsCreateSchema):
-    return await reviews_service.create(data)
+async def create_controller(data: ReviewsCreateSchema, user_id : int):
+    data_dict = data.model_dump()
+    data_dict['user_id'] = user_id
+    print(data_dict)
+    return await reviews_service.create(data_dict)
 
 async def get_all_controller():
     return await reviews_service.get_all()
 
 async def get_controller(id: int):
     reviews = await reviews_service.get_by_id(id)
+    if reviews is None:
+        raise HTTPException(status_code=404, detail='not found')
+    return reviews
+
+async def get_by_user(user_id : int):
+    reviews = await reviews_service.get_by_user(user_id)
     if reviews is None:
         raise HTTPException(status_code=404, detail='not found')
     return reviews
@@ -25,3 +34,4 @@ async def delete_controller(id: int):
     if reviews is None:
         raise HTTPException(status_code=404, detail='not found')
     return reviews
+

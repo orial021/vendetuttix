@@ -37,6 +37,19 @@ class UserCreateSchema(BaseModel):
     name : str
     rol : str
     
+    model_config = {
+        'json_schema_extra':{
+            'example':{
+                'id': 1,
+                'username' : 'usuario1',
+                'password' : '123456',
+                'email' : 'usuario@12345.com',
+                'name' : 'nombre de usuario',
+                'rol' : 'client'
+            }
+        }
+    }
+    
     
 class UserResponseSchema(UserCreateSchema):
     id: int
