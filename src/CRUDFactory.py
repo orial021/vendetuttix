@@ -1,3 +1,9 @@
+#se usa con python3 CRUDFactory.py
+#Debe estar hecho el modelo antes de usarlo
+#Se debe cambiar las variables CRUD y schema_class
+#si hay algun enum se debe corregir en schema
+
+
 import os
 
 CRUD: str = "exam"
