@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
+import uuid
 
 from enum import Enum
 
@@ -10,17 +11,16 @@ class RoleEnum(Enum):
     GUEST = "guest"
 
 class User(BaseModel):
-    id : int
+    id : uuid.UUID
     username : str
     password : str
-    email : str
+    email : EmailStr
     name : str
     rol : RoleEnum
     
     model_config = {
         'json_schema_extra':{
             'example':{
-                'id': 1,
                 'username' : 'usuario1',
                 'password' : '123456',
                 'email' : 'usuario@12345.com',
@@ -33,14 +33,15 @@ class User(BaseModel):
 class UserCreateSchema(BaseModel):
     username : str
     password : str
-    email : str
+    email : EmailStr
     name : str
-    rol : str
+    rol : RoleEnum
+    
+
     
     model_config = {
         'json_schema_extra':{
             'example':{
-                'id': 1,
                 'username' : 'usuario1',
                 'password' : '123456',
                 'email' : 'usuario@12345.com',
@@ -52,10 +53,12 @@ class UserCreateSchema(BaseModel):
     
     
 class UserResponseSchema(UserCreateSchema):
-    id: int
+    id: uuid.UUID
     created_at: datetime
     updated_at: datetime
     deleted_at: datetime | None = None
+    
+
     
     model_config = {
         'json_schema_extra':{

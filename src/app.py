@@ -22,7 +22,7 @@ app.add_middleware(HTTPErrorHandler)
 load_dotenv()
 
 origins = [
-    "http://localhost:5173",  # Agrega aquí la URL de tu aplicación Svelte
+    "http://localhost:5173",
 ]
 
 app.add_middleware(
@@ -35,7 +35,7 @@ app.add_middleware(
 
 app.title = 'Mi modelo fastAPI'
 app.version = '1.0.0'
-#app.mount('/assets/styles.css', StaticFiles(directory='../frontend/public/assets/styles.css'), name='static')
+
 
 register_tortoise(
     app,
@@ -47,14 +47,3 @@ register_tortoise(
 for router, prefix in routers:
     app.include_router(router, prefix=prefix)
     
-
-
-'''<p>Username: {user.username}</p>
-				<p>Password: {user.password}</p>
-                <p>Email: {user.email}</p>
-                <p>Name : {user.name}</p>
-				<p>Rol : {user.rol}</p>
-				<p>ID : {user.id}</p>
-				<p>Created_at : {user.created_at}</p>
-				<p>Updated_at : {user.updated_at}</p>
-				<p>deleted_at : {user.deleted_at}</p>'''

@@ -6,8 +6,8 @@
 
 import os
 
-CRUD: str = "exam"
-schema_class= "Exam"
+CRUD: str = "about"
+schema_class= "About"
 properties_by_model = {}
 properties_all_by_model = {}
 model_name : str
@@ -147,7 +147,7 @@ def create_controller_file(model_name, schema_class):
     os.makedirs(output_directory, exist_ok=True)
     schema_filename = os.path.join(output_directory, f"{model_name}_controller.py")  
     with open(schema_filename, "w", encoding="utf-8") as schema_file:
-        schema_file.write(f"from services.reviews_service import reviews_service\nfrom schemas.contact_scheme import ContactCreateSchema\nfrom fastapi import HTTPException\n\nasync def create_controller(data: ContactCreateSchema):\n    return await reviews_service.create(data)\n\nasync def get_all_controller():\n    return await reviews_service.get_all()\n\nasync def get_controller(id: int):\n    contact = await reviews_service.get_by_id(id)\n    if contact is None:\n        raise HTTPException(status_code=404, detail='not found')\n    return contact\n\nasync def update_controller(id: int, data: ContactCreateSchema):\n    contact = await reviews_service.update(id, data)\n    if contact is None:\n        raise HTTPException(status_code=404, detail='not found')\n    return contact\n\nasync def delete_controller(id: int):\n    contact = await reviews_service.delete(id)\n    if contact is None:\n        raise HTTPException(status_code=404, detail='not found')\n    return contact")
+        schema_file.write(f"from services.{model_name}_service import {model_name}_service\nfrom schemas.{model_name}_schema import {schema_class}CreateSchema\nfrom fastapi import HTTPException\n\nasync def create_controller(data: {schema_class}CreateSchema):\n    return await {model_name}_service.create(data)\n\nasync def get_all_controller():\n    return await {model_name}_service.get_all()\n\nasync def get_controller(id: int):\n    {model_name} = await {model_name}_service.get_by_id(id)\n    if {model_name} is None:\n        raise HTTPException(status_code=404, detail='not found')\n    return {model_name}\n\nasync def update_controller(id: int, data: {schema_class}CreateSchema):\n    {model_name} = await {model_name}_service.update(id, data)\n    if {model_name} is None:\n        raise HTTPException(status_code=404, detail='not found')\n    return {model_name}\n\nasync def delete_controller(id: int):\n    {model_name} = await {model_name}_service.delete(id)\n    if {model_name} is None:\n        raise HTTPException(status_code=404, detail='not found')\n    return {model_name}")
 
 def create_router_file(model_name, schema_class):
     router = f"{model_name}_router"
@@ -155,7 +155,7 @@ def create_router_file(model_name, schema_class):
     os.makedirs(output_directory, exist_ok=True)
     schema_filename = os.path.join(output_directory, f"{model_name}_router.py")  
     with open(schema_filename, "w", encoding="utf-8") as schema_file:
-        schema_file.write(f"from typing import List\nfrom fastapi import APIRouter, Depends\nfrom models.user_model import User\nfrom schemas.{model_name}_schema import {schema_class}CreateSchema, {schema_class}ResponseSchema\nfrom controllers.{model_name}_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller\nfrom routers.auth_router import require_admin\n\n{router} = APIRouter()\n\n@{router}.get('/all', tags=['{schema_class}'], response_model=List[{schema_class}ResponseSchema])\nasync def all():\n    return await get_all_controller()\n\n@{router}.get")
+        schema_file.write(f"from typing import List\nfrom fastapi import APIRouter, Depends\nfrom models.user_model import User\nfrom schemas.{model_name}_schema import {schema_class}CreateSchema, {schema_class}ResponseSchema\nfrom controllers.{model_name}_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller\nfrom routers.user.auth_router import require_admin\n\n{router} = APIRouter()\n\n@{router}.get('/all', tags=['{schema_class}'], response_model=List[{schema_class}ResponseSchema])\nasync def all():\n    return await get_all_controller()\n\n@{router}.get")
         
         schema_file.write("('/show/{id}', ")
     

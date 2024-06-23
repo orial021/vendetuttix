@@ -12,3 +12,6 @@ class ErrorLog(Model):
 
     def __str__(self):
         return f"{self.error_type} - {self.message}"
+    
+    class Meta:
+        table = "error_log"

@@ -5,7 +5,7 @@ from routers.web.banner_router import banner_router
 from routers.web.content_router import content_router
 from routers.web.reviews_router import reviews_router
 from routers.web.contact_router import contact_router
-from routers.exam_router import exam_router
+from routers.web.about_router import about_router
 
 routers = [
     (home_router, '/home'),
@@ -15,6 +15,6 @@ routers = [
     (content_router, '/content'),
     (reviews_router, '/reviews'),
     (contact_router, '/contact'),
-    (exam_router, '/exam'),
+    (about_router, '/about'),
     
 ] 

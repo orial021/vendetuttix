@@ -4,7 +4,7 @@ from .user_model import User
 from .content_model import Content
 from .reviews_model import Reviews
 from .Contact_model import Contact
-from .exam_model import Exam
+from .about_model import About
 
 
 __all__ = [
@@ -14,5 +14,5 @@ __all__ = [
     'Content',
     'Reviews',
     'Contact',
-    'Exam'
+    'About',
 ]
