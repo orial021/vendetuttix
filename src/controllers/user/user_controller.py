@@ -1,7 +1,7 @@
 from fastapi import HTTPException
-from schemas.user_schema import UserCreateSchema
+from schemas.user.user_schema import UserCreateSchema
 from models.user_model import User
-from services.user_service import UserService
+from services.user.user_service import UserService
 
 class user_controller:
     def __init__(self):

@@ -1,6 +1,6 @@
 from tortoise import fields
 from tortoise.models import Model
-from schemas.user_schema import RoleEnum
+from schemas.user.user_schema import RoleEnum
 
 
 class User(Model):

@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from models.user_model import User
 from schemas.exam_schema import ExamCreateSchema, ExamResponseSchema
 from controllers.exam_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller
-from routers.auth_router import require_admin
+from routers.user.auth_router import require_admin
 
 exam_router = APIRouter()
 

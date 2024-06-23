@@ -1,5 +1,5 @@
-from services.reviews_service import reviews_service
-from schemas.reviews_schema import ReviewsCreateSchema
+from services.web.reviews_service import reviews_service
+from schemas.web.reviews_schema import ReviewsCreateSchema
 from fastapi import HTTPException
 
 async def create_controller(data: ReviewsCreateSchema, user_id : int):

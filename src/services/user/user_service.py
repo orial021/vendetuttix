@@ -2,8 +2,8 @@ from typing import Type, TypeVar, Generic
 from pydantic import BaseModel
 from tortoise.models import Model
 from datetime import datetime
-from schemas.content_schema import ContentCreateSchema
-from models.content_model import Content
+from schemas.user.user_schema import UserCreateSchema
+from models.user_model import User
 
 T = TypeVar('T', bound=BaseModel)
 M = TypeVar('M', bound=Model)
@@ -38,8 +38,8 @@ class CRUDService(Generic[T, M]):
         return None
 
 
-class ContentService(CRUDService[ContentCreateSchema, Content]):
+class UserService(CRUDService[UserCreateSchema, User]):
     pass
 
 
-content_service = ContentService(Content, ContentCreateSchema)
+user_service = UserService(User, UserCreateSchema)

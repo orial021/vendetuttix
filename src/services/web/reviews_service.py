@@ -3,7 +3,7 @@ from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
 from tortoise.models import Model
 from datetime import datetime
-from schemas.reviews_schema import ReviewsCreateSchema
+from schemas.web.reviews_schema import ReviewsCreateSchema
 from models.reviews_model import Reviews
 
 T = TypeVar('T', bound=BaseModel)

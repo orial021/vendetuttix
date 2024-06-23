@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, Depends, Security
 from models.user_model import User
-from schemas.banner_schema import BannerCreateSchema, BannerResponseSchema
-from controllers.banner_controller import create_banner, get_all_banners, get_banner, update_banner, delete_banner
-from routers.auth_router import oauth2_scheme, require_admin
+from schemas.web.banner_schema import BannerCreateSchema, BannerResponseSchema
+from controllers.web.banner_controller import create_banner, get_all_banners, get_banner, update_banner, delete_banner
+from routers.user.auth_router import oauth2_scheme, require_admin
 
 banner_router = APIRouter()
 

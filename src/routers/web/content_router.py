@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, Depends, Security
 from models.user_model import User
-from schemas.content_schema import ContentCreateSchema, ContentResponseSchema
-from controllers.content_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller
-from routers.auth_router import oauth2_scheme, require_admin
+from schemas.web.content_schema import ContentCreateSchema, ContentResponseSchema
+from controllers.web.content_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller
+from routers.user.auth_router import oauth2_scheme, require_admin
 
 content_router = APIRouter()
 

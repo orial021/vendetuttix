@@ -4,7 +4,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from models.user_model import User
 import os
-from schemas.user_schema import RoleEnum
+from schemas.user.user_schema import RoleEnum
 
 
 

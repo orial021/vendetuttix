@@ -1,5 +1,5 @@
-from services.content_service import content_service
-from schemas.content_schema import ContentCreateSchema
+from services.web.content_service import content_service
+from schemas.web.content_schema import ContentCreateSchema
 from fastapi import HTTPException
 
 async def create_controller(data: ContentCreateSchema):

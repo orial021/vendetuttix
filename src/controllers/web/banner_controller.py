@@ -1,5 +1,5 @@
-from services.banner_service import banner_service
-from schemas.banner_schema import BannerCreateSchema
+from services.web.banner_service import banner_service
+from schemas.web.banner_schema import BannerCreateSchema
 from fastapi import HTTPException
 
 async def create_banner(data: BannerCreateSchema):

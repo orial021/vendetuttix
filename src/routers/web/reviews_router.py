@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, Depends
 from models.user_model import User
-from schemas.reviews_schema import ReviewsCreateSchema, ReviewsResponseSchema
-from controllers.reviews_controller import create_controller, get_all_controller, get_controller, get_by_user, update_controller, delete_controller
-from routers.auth_router import require_admin, get_user_id
+from schemas.web.reviews_schema import ReviewsCreateSchema, ReviewsResponseSchema
+from controllers.web.reviews_controller import create_controller, get_all_controller, get_controller, get_by_user, update_controller, delete_controller
+from routers.user.auth_router import require_admin, get_user_id
 
 reviews_router = APIRouter()
 

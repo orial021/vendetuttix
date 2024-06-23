@@ -1,8 +1,8 @@
 from typing import List
 from fastapi import APIRouter, Path, Security
-from schemas.user_schema import UserCreateSchema, UserResponseSchema
-from controllers.user_controller import user_controller
-from routers.auth_router import oauth2_scheme
+from schemas.user.user_schema import UserCreateSchema, UserResponseSchema
+from controllers.user.user_controller import user_controller
+from routers.user.auth_router import oauth2_scheme
 
 user_router = APIRouter()
 
