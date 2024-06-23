@@ -2,7 +2,7 @@ from typing import Type, TypeVar, Generic
 from pydantic import BaseModel
 from tortoise.models import Model
 from datetime import datetime
-from schemas.contact_scheme import ContactCreateSchema
+from schemas.contact_schema import ContactCreateSchema
 from models.Contact_model import Contact
 
 T = TypeVar('T', bound=BaseModel)

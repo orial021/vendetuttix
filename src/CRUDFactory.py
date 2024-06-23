@@ -44,7 +44,7 @@ def map_tortoise_field_to_pydantic_type(tortoise_field_type):
     Mapea los tipos de campo de Tortoise ORM a los tipos correspondientes en Pydantic.
     """
     if "CharEnum" in tortoise_field_type:
-        return "enum"
+        return "Enum"
     elif "Char" in tortoise_field_type or "Text" in tortoise_field_type:
         return "str"
     elif "Int" in tortoise_field_type:
@@ -73,7 +73,7 @@ def create_schema_file(model_name, converted_properties):
     global service_name
     service_name = model_name
     with open(schema_filename, "w", encoding="utf-8") as schema_file:
-        schema_file.write(f"from pydantic import BaseModel\nfrom typing import Optional\nfrom datetime import datetime\n\n")
+        schema_file.write(f"from enum import Enum\nfrom pydantic import BaseModel\nfrom typing import Optional\nfrom datetime import datetime\n\n")
         schema_file.write(f"class {schema_class}(BaseModel):\n")
         for prop, _ in converted_properties.get(model_name, []):
             schema_file.write(f"    {prop}: {_}\n")

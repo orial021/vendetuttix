@@ -1,7 +1,7 @@
 from typing import List
 from fastapi import APIRouter, Depends
 from models.user_model import User
-from schemas.contact_scheme import ContactCreateSchema, ContactResponseSchema
+from schemas.contact_schema import ContactCreateSchema, ContactResponseSchema
 from controllers.contact_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller
 from routers.auth_router import require_admin
 

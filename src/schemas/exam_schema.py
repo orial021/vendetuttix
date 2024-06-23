@@ -1,3 +1,4 @@
+from enum import Enum
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
@@ -10,7 +11,7 @@ class Exam(BaseModel):
     phone: str
     message: str
     on_top: bool
-    classss: str
+    classss: Enum
     subject: str
 
 
@@ -37,7 +38,7 @@ class ExamCreateSchema(BaseModel):
     phone: str
     message: str
     on_top: bool
-    classss: str
+    classss: Enum
     subject: str
 
 
