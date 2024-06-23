@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Request
-from fastapi.responses import RedirectResponse, PlainTextResponse
+from fastapi import APIRouter
+from fastapi.responses import FileResponse, RedirectResponse, PlainTextResponse
 #from app import templates
 
 
@@ -10,7 +10,6 @@ home_router = APIRouter()
 def go_home():
     return RedirectResponse('/home')
 
-@home_router.get('/home', tags=['Home'])
+@home_router.get('/home', tags=['Home'], response_class=FileResponse)
 def home():
-#def home(request: Request):
-    return PlainTextResponse('Esta es la pagina de inicio')
+    return 'frontend/public/index.html'

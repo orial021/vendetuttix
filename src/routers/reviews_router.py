@@ -15,7 +15,7 @@ async def all():
 async def show(id: int):
     return await get_controller(id)
 
-@reviews_router.get('/showByUser/{userId}', tags=['Reviews'], response_model=ReviewsResponseSchema)
+@reviews_router.get('/showByUser/{userId}', tags=['Reviews'], response_model=List[ReviewsResponseSchema])
 async def show_by_id(userId : int):
     return await get_by_user(userId)
 
