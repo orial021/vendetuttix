@@ -10,7 +10,7 @@ class Exam(BaseModel):
     phone: str
     message: str
     on_top: bool
-    classss: enum
+    classss: str
     subject: str
 
 
@@ -37,7 +37,7 @@ class ExamCreateSchema(BaseModel):
     phone: str
     message: str
     on_top: bool
-    classss: enum
+    classss: str
     subject: str
 
 

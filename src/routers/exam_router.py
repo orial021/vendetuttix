@@ -11,7 +11,7 @@ exam_router = APIRouter()
 async def all():
     return await get_all_controller()
 
-@exam_router.get('/show/<built-in function id>', tags=['Exam'], response_model=ExamResponseSchema)
+@exam_router.get('/show/{id}', tags=['Exam'], response_model=ExamResponseSchema)
 async def show(id: int):
     return await get_controller(id)
 
@@ -19,10 +19,10 @@ async def show(id: int):
 async def creater(data: ExamCreateSchema, admin_user: User = Depends(require_admin)):
     return await create_controller(data)
 
-@exam_router.put('/update/<built-in function id>', tags=['Exam'], response_model=ExamResponseSchema)
+@exam_router.put('/update/{id}', tags=['Exam'], response_model=ExamResponseSchema)
 async def updater(id: int, data: ExamCreateSchema, admin_user: User = Depends(require_admin)):
     return await update_controller(id, data)
 
-@exam_router.delete('/delete/<built-in function id>', tags=['Exam'], response_model=ExamResponseSchema)
+@exam_router.delete('/delete/{id}', tags=['Exam'], response_model=ExamResponseSchema)
 async def deleter(id: int, admin_user: User = Depends(require_admin)):
     return await delete_controller(id)

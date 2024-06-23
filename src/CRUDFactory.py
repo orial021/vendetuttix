@@ -149,7 +149,19 @@ def create_router_file(model_name, schema_class):
     os.makedirs(output_directory, exist_ok=True)
     schema_filename = os.path.join(output_directory, f"{model_name}_router.py")  
     with open(schema_filename, "w", encoding="utf-8") as schema_file:
-        schema_file.write(f"from typing import List\nfrom fastapi import APIRouter, Depends\nfrom models.user_model import User\nfrom schemas.{model_name}_schema import {schema_class}CreateSchema, {schema_class}ResponseSchema\nfrom controllers.{model_name}_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller\nfrom routers.auth_router import require_admin\n\n{router} = APIRouter()\n\n@{router}.get('/all', tags=['{schema_class}'], response_model=List[{schema_class}ResponseSchema])\nasync def all():\n    return await get_all_controller()\n\n@{router}.get('/show/{id}', tags=['{schema_class}'], response_model={schema_class}ResponseSchema)\nasync def show(id: int):\n    return await get_controller(id)\n\n@{router}.post('/create', tags=['{schema_class}'], response_model={schema_class}ResponseSchema)\nasync def creater(data: {schema_class}CreateSchema, admin_user: User = Depends(require_admin)):\n    return await create_controller(data)\n\n@{router}.put('/update/{id}', tags=['{schema_class}'], response_model={schema_class}ResponseSchema)\nasync def updater(id: int, data: {schema_class}CreateSchema, admin_user: User = Depends(require_admin)):\n    return await update_controller(id, data)\n\n@{router}.delete('/delete/{id}', tags=['{schema_class}'], response_model={schema_class}ResponseSchema)\nasync def deleter(id: int, admin_user: User = Depends(require_admin)):\n    return await delete_controller(id)")
+        schema_file.write(f"from typing import List\nfrom fastapi import APIRouter, Depends\nfrom models.user_model import User\nfrom schemas.{model_name}_schema import {schema_class}CreateSchema, {schema_class}ResponseSchema\nfrom controllers.{model_name}_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller\nfrom routers.auth_router import require_admin\n\n{router} = APIRouter()\n\n@{router}.get('/all', tags=['{schema_class}'], response_model=List[{schema_class}ResponseSchema])\nasync def all():\n    return await get_all_controller()\n\n@{router}.get")
+        
+        schema_file.write("('/show/{id}', ")
+    
+        schema_file.write(f"tags=['{schema_class}'], response_model={schema_class}ResponseSchema)\nasync def show(id: int):\n    return await get_controller(id)\n\n@{router}.post('/create', tags=['{schema_class}'], response_model={schema_class}ResponseSchema)\nasync def creater(data: {schema_class}CreateSchema, admin_user: User = Depends(require_admin)):\n    return await create_controller(data)\n\n@{router}.")
+        
+        schema_file.write("put('/update/{id}',")
+        
+        schema_file.write(f" tags=['{schema_class}'], response_model={schema_class}ResponseSchema)\nasync def updater(id: int, data: {schema_class}CreateSchema, admin_user: User = Depends(require_admin)):\n    return await update_controller(id, data)\n\n@{router}.")
+        
+        schema_file.write("delete('/delete/{id}',")
+        
+        schema_file.write(f" tags=['{schema_class}'], response_model={schema_class}ResponseSchema)\nasync def deleter(id: int, admin_user: User = Depends(require_admin)):\n    return await delete_controller(id)")
 
 
 
