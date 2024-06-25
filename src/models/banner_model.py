@@ -11,7 +11,7 @@ class Banner(Model):
     click_count = fields.IntField(null = True)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now=True)
-    deleted_at = fields.DatetimeField(auto_now = True, null = True)
+    deleted_at = fields.DatetimeField(null = True)
 
     def __str__(self):
         return self.title

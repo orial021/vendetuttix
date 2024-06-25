@@ -13,7 +13,10 @@ async def all():
 
 @banner_router.get('/show/{id}', tags=['Banner'], response_model=BannerResponseSchema)
 async def show(id: int):
-    return await get_banner(id)
+    banner = await get_banner(id)
+    return banner
+
+    return templates.TemplateResponse("home.html", {"request": request, "banner": banner})
 
 @banner_router.post('/create', tags=['Banner'], response_model=BannerResponseSchema)
 async def creater(data: BannerCreateSchema, admin_user: User = Depends(require_admin)):

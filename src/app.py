@@ -14,15 +14,17 @@ from utils.http_error_handler import HTTPErrorHandler
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise_conf import TORTOISE_ORM
+from templates import templates
 
 
 app = FastAPI()
 
 app.add_middleware(HTTPErrorHandler)
 load_dotenv()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 origins = [
-    "http://localhost:5173",
+    "http://localhost:3000",
 ]
 
 app.add_middleware(
@@ -46,4 +48,3 @@ register_tortoise(
 
 for router, prefix in routers:
     app.include_router(router, prefix=prefix)
-    

@@ -1,6 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from fastapi.responses import FileResponse, RedirectResponse, PlainTextResponse
-#from app import templates
+from templates import templates
 
 
 home_router = APIRouter()
@@ -12,4 +12,8 @@ def go_home():
 
 @home_router.get('/home', tags=['Home'], response_class=FileResponse)
 def home():
-    return 'frontend/public/index.html'
+    return "<p>Hello Jairo</p>"
+
+@home_router.get('/page')
+def index(request: Request):
+    return templates.TemplateResponse('home/index.html', {'request': request})
