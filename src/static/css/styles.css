@@ -1,13 +1,8 @@
-/* styles.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 
 /* Estilo para la navegación */
 nav a {
-    background-color: #888;
-    color: white;
+    background-color: #000000;
+    color: rgb(255, 253, 253);
     font-size: 3rem;
     /* Agrega más propiedades aquí según tus necesidades */
 }
@@ -17,12 +12,24 @@ body {
     background-color: silver;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
     font-family: var(--font-prata), serif;
-    color: white;
+    color: grey;
   }
 
-
+header {
+  background-color: #000000;
+}
 p   {
     color: black;
+    font-size: 2rem;
+}
+h1 {
+  font-family: var(--font-prata), serif;
+    color: black;
+}
+.mi-boton-personalizado {
+  background: black;
+  color: white;
+  /* Agrega otros estilos personalizados aquí */
 }

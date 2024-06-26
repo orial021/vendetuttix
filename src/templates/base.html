@@ -6,15 +6,20 @@
     <title>{% block title %}Vendetuttix{% endblock %}</title>
     <link rel="icon" href="{{ url_for('static', path='images/favicon.jpg') }}" type="image/jpeg">
     <link rel="stylesheet" href="/static/css/output.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
     <header class="text-primary-foreground py-4 px-6">
         <nav class="hidden md:flex items-center space-x-6">
         <div class="container mx-auto flex items-center justify-between">
-            <a class="text-2xl font-bold" href="#">
+            <div class="w-30">
+            <a class="text-5xl font-bold" href="#">
                 Catalogo
             </a>
-            <div>
+        </div>
+        <div class="space-x-8">
+            
                 <a class="hover:text-accent" href="#">
                     Inicio
                 </a>
@@ -32,10 +37,9 @@
         </nav>
     </header>
 
-    <main class="flex-1">
+    <main>
         {% block content %}{% endblock %}
     </main>
 
-    <h1>{{ VENDETUTTIX }}</h1>
 </body>
 </html>

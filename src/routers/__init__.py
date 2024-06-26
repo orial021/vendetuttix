@@ -6,6 +6,9 @@ from routers.web.content_router import content_router
 from routers.web.reviews_router import reviews_router
 from routers.web.contact_router import contact_router
 from routers.web.about_router import about_router
+from routers.products.category_router import category_router
+from routers.products.departament_router import departament_router
+from routers.products.product_router import product_router
 
 routers = [
     (home_router, '/home'),
@@ -16,5 +19,8 @@ routers = [
     (reviews_router, '/reviews'),
     (contact_router, '/contact'),
     (about_router, '/about'),
+    (category_router, '/category'),
+    (departament_router, '/departament'),
+    (product_router, '/product'),
     
 ] 

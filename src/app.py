@@ -5,6 +5,9 @@
 #auth de admins admin_user: User = Depends(require_admin)
 #CRUD modelo contact, orden del crud schema, model (__init__.py), service, controller, router (__init__.py)
 #modelo para busqueda de una lista por dato especifico reviews/show_by_id
+#tailwind npx tailwindcss -i .\static\css\app.css -o .\static\css\app.css --watch
+#entorno virtual venv\Scripts\Activate.ps1 
+
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -14,7 +17,6 @@ from utils.http_error_handler import HTTPErrorHandler
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise_conf import TORTOISE_ORM
-from templates import templates
 
 
 app = FastAPI()
@@ -43,8 +45,9 @@ register_tortoise(
     app,
     config = TORTOISE_ORM,
     generate_schemas = True,
-    add_exception_handlers = False
+    add_exception_handlers = True
 )
 
 for router, prefix in routers:
     app.include_router(router, prefix=prefix)
+    

@@ -6,8 +6,8 @@
 
 import os
 
-CRUD: str = "about"
-schema_class= "About"
+CRUD: str = "departament"
+schema_class= "Departament"
 properties_by_model = {}
 properties_all_by_model = {}
 model_name : str
