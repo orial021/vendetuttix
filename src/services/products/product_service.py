@@ -22,8 +22,8 @@ class CRUDService(Generic[T, M]):
     async def get_by_id(self, id: int):
         return await self.model.get_or_none(id=id)
     
-    async def get_by_user(self, user_id: int):
-        return await self.model.filter(user_id=user_id).all()
+    async def get_by_category(self, category_id: int):
+        return await self.model.filter(category=category_id).all()
 
     async def update(self, id: int, data: T):
         instance = await self.get_by_id(id)
