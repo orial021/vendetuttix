@@ -10,6 +10,7 @@
 
 
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from routers import routers
 from tortoise.contrib.fastapi import register_tortoise
@@ -51,3 +52,6 @@ register_tortoise(
 for router, prefix in routers:
     app.include_router(router, prefix=prefix)
     
+@app.router.get('/', tags=['Home'])
+def go_home():
+    return RedirectResponse('/home/page')

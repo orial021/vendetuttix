@@ -14,7 +14,7 @@ def go_home():
 def home():
     return "<p>Hello Jairo</p>"
 
-@home_router.get('/page')
+@home_router.get('/page', tags=['Home'])
 def index(request: Request):
     return templates.TemplateResponse('home/index.html', {'request': request})
 

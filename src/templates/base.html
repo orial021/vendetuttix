@@ -4,7 +4,7 @@
     <meta charset="UTF-8"name="viewport"
     content="viewport-fit=cover, width=device-width, initial-scale=1.0">
     <title>{% block title %}Vendetuttix{% endblock %}</title>
-    <link rel="icon" href="{{ url_for('static', path='images/favicon.jpg') }}" type="image/jpeg">
+    <link rel="icon" href="{{ url_for('static', path='/images/favicon2.jpg') }}" type="image/jpeg">
     <link rel="stylesheet" href="/static/css/output.css">
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/app.css">
@@ -14,26 +14,30 @@
         <nav class="hidden md:flex items-center space-x-6">
         <div class="container mx-auto flex items-center justify-between">
             <div class="w-30">
-            <a class="text-5xl font-bold" href="#">
-                Catalogo
+            <a class="text-5xl font-bold" href="/">
+                Inicio
             </a>
         </div>
         <div class="space-x-8">
-            
-                <a class="hover:text-accent" href="#">
-                    Inicio
-                </a>
-                <a class="hover:text-accent" href="#">
-                    Productos
-                </a>
-                <a class="hover:text-accent" href="#">
-                    Informacion
-                </a>
-                <a class="hover:text-accent" href="#">
-                    Contacto
-                </a>
-            </div>
+          <nav>
+            <ul class="menu">
+              <li><a href="#">Catálogo</a>
+                <ul class="submenu">
+                  <li><a href="">Departamento</a></li>
+                  <li><a href="#">Categoría</a></li>
+                  <li><a href="#">Productos</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <a class="hover:text-accent" href="#">
+            Información
+          </a>
+          <a class="hover:text-accent" href="#">
+            Contacto
+          </a>
         </div>
+        
         </nav>
     </header>
 

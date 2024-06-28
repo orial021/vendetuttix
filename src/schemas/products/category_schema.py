@@ -18,7 +18,7 @@ class Category(BaseModel):
                 'id':1,
                 'title':'string',
                 'description':'string',
-                'departament':'string',
+                'departament_id':'string',
                 'is_active':'True',
                 'image_url':'string',
             }
@@ -38,7 +38,7 @@ class CategoryCreateSchema(BaseModel):
             'example':{
                 'title':'string',
                 'description':'string',
-                'departament':'string',
+                'departament_id':'string',
                 'is_active':'True',
                 'image_url':'string',
             }
@@ -58,7 +58,7 @@ class CategoryResponseSchema(CategoryCreateSchema):
                 'id':1,
                 'title':'string',
                 'description':'string',
-                'departament':'string',
+                'departament_id':'string',
                 'is_active':'True',
                 'image_url':'string',
             }
