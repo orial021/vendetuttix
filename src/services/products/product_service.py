@@ -1,4 +1,5 @@
-from typing import Type, TypeVar, Generic
+from typing import Optional, Type, TypeVar, Generic
+from fastapi import Query
 from pydantic import BaseModel
 from tortoise.models import Model
 from datetime import datetime
@@ -16,15 +17,27 @@ class CRUDService(Generic[T, M]):
     async def create(self, data: T):
         return await self.model.create(**data.model_dump())
 
-    async def get_all(self):
-        return await self.model.all()
+    async def get_all(self, offset: int = 0, limit: int = 10, order_by : str = "name"):
+        if order_by:
+            return await self.model.all().offset(offset).limit(limit).order_by(order_by)
+        else:
+            return await self.model.all().offset(offset).limit(limit)
 
     async def get_by_id(self, id: int):
         return await self.model.get_or_none(id=id)
     
-    async def get_by_category(self, category_id: int):
-        return await self.model.filter(category=category_id).all()
+    async def get_by_category(self, category_id: int, offset: int = 0, limit: int = 10, order_by : str = "name"):
+        if order_by:
+            return await self.model.filter(category=category_id).all().offset(offset).limit(limit).order_by(order_by)
+        else:
+            return await self.model.filter(category=category_id).all().offset(offset).limit(limit)
 
+    async def get_featured(self, is_featured: bool, offset: int = 0, limit: int = 4, order_by : str = "updated_at"):
+        if order_by:
+            return await self.model.filter(is_featured=is_featured).all().offset(offset).limit(limit).order_by(order_by)
+        else:
+            return await self.model.filter(is_featured=is_featured).all().offset(offset).limit(limit)
+    
     async def update(self, id: int, data: T):
         instance = await self.get_by_id(id)
         if instance:

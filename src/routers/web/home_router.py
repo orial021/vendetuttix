@@ -17,3 +17,7 @@ def home():
 @home_router.get('/page')
 def index(request: Request):
     return templates.TemplateResponse('home/index.html', {'request': request})
+
+@home_router.get('/productComponent')
+def index(request: Request):
+    return templates.TemplateResponse('components/featured.html', {'request': request})

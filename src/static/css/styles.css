@@ -33,3 +33,27 @@ h1 {
   color: white;
   /* Agrega otros estilos personalizados aquí */
 }
+
+.bg-light {
+  background-color: #F5F7FA; /* Cambia el color según tus preferencias */
+}
+
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+}
+.carousel-item {
+  flex: 0 0 100%; /* Ancho fijo para cada producto */
+  padding: 10px;
+  transition: transform 0.5s ease;
+}
+.product-columns {
+  column-count: 4; /* Cambia el número de columnas según tus necesidades */
+  column-gap: 1rem; /* Espacio entre columnas */
+}
+
+.product-item {
+  break-inside: avoid; /* Evita que los productos se dividan entre columnas */
+  margin-bottom: 1rem; /* Espacio entre productos */
+}

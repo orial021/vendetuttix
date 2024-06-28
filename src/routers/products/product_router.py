@@ -1,15 +1,15 @@
 from typing import List
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from models.user_model import User
 from schemas.products.product_schema import ProductCreateSchema, ProductResponseSchema
-from controllers.products.product_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller, get_by_category
+from controllers.products.product_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller, get_by_category, get_featured
 from routers.user.auth_router import require_admin
 
 product_router = APIRouter()
 
 @product_router.get('/all', tags=['Product'], response_model=List[ProductResponseSchema])
-async def all():
-    return await get_all_controller()
+async def all(offset: int = 0, limit: int = 10, order_by: str = "name"):
+    return await get_all_controller(offset, limit, order_by)
 
 @product_router.get('/show/{id}', tags=['Product'], response_model=ProductResponseSchema)
 async def show(id: int):
@@ -17,8 +17,12 @@ async def show(id: int):
 
 
 @product_router.get('/showByCategory/{categoryId}', tags=['Product'], response_model=List[ProductResponseSchema])
-async def show_by_id(categoryId : int):
-    return await get_by_category(categoryId)
+async def show_by_id(categoryId : int, offset: int = 0, limit: int = 10, order_by: str = "name"):
+    return await get_by_category(categoryId, offset, limit, order_by)
+
+@product_router.get('/showFeatured/{is_featured}', tags=['Product'], response_model=List[ProductResponseSchema])
+async def show_featured(is_featured: bool = True, offset: int = 0, limit: int = 4, order_by: str = "updated_at"):
+    return await get_featured(is_featured, offset, limit, order_by)
 
 @product_router.post('/create', tags=['Product'], response_model=ProductResponseSchema)
 async def creater(data: ProductCreateSchema, admin_user: User = Depends(require_admin)):

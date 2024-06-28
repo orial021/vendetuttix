@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"name="viewport"
-    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0">
     <title>{% block title %}Vendetuttix{% endblock %}</title>
     <link rel="icon" href="{{ url_for('static', path='images/favicon.jpg') }}" type="image/jpeg">
     <link rel="stylesheet" href="/static/css/output.css">
@@ -42,4 +42,27 @@
     </main>
 
 </body>
+
+<footer class="bg-color: black text-muted-foreground py-8">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+      <div class="mb-4 md:mb-0">
+        <a class="text-3xl font-bold" href="#">
+          Catalogo Vendetuttix
+        </a>
+        <p class="text-sm">tu mas diversa tienda de productos</p>
+      </div>
+      <div class="space-x-6">
+        <a class="hover:text-accent" href="#">
+          Contáctame
+        </a>
+        <a class="hover:text-accent" href="#">
+          Políticas de privacidad
+        </a>
+        <a class="hover:text-accent" href="#">
+          Términos y condiciones
+        </a>
+      </div>
+    </div>
+  </footer>
+
 </html>
