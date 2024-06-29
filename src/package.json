@@ -8,7 +8,7 @@
   "main": "app.py",
   "scripts": {
     "dev": "fastapi dev app.py --reload",
-    "fastapi-prod": "fastapi run src/app.py",
+    "fastapi-prod": "fastapi run app.py",
     "build": "pip3 install -r src/requeriments.txt",
     "mi:g": "aerich migrate",
     "mi:u": "aerich upgrade",
