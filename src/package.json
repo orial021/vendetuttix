@@ -2,5 +2,17 @@
   "dependencies": {
     "firebase": "^10.12.2",
     "tailwindcss": "^3.4.4"
+  },
+  "name": "vendetuttix-api",
+  "version": "1.0.0",
+  "main": "app.py",
+  "scripts": {
+    "dev": "fastapi dev app.py --reload",
+    "fastapi-prod": "fastapi run src/app.py",
+    "build": "pip3 install -r src/requeriments.txt",
+    "mi:g": "aerich migrate",
+    "mi:u": "aerich upgrade",
+    "CRUD:g": "pithon3 src/CRUDFactory.py",
+    "tailwind": "npx tailwindcss -i ./static/css/app.css -o ./static/css/app.css --watch"
   }
 }

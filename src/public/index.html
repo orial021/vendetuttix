@@ -2,8 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; URL=/src/templates/home/index.html">
     <title>Redirección</title>
+    <script>
+        // Realiza un fetch a la ruta '/'
+        fetch('/')
+            .then(response => {
+                if (response.ok) {
+                    // El backend se encargará de redirigir
+                    console.log('Redirección exitosa');
+                } else {
+                    console.error('Error al cargar la página de inicio');
+                }
+            })
+            .catch(error => {
+                console.error('Error en la solicitud fetch:', error);
+            });
+    </script>
 </head>
 <body>
     <!-- Contenido opcional de la página -->
