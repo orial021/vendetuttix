@@ -20,7 +20,7 @@ async def show_by_id(userId : int):
     return await get_by_user(userId)
 
 @reviews_router.post('/create', tags=['Reviews'], response_model=ReviewsResponseSchema)
-async def creater(data: ReviewsCreateSchema, user_id : int = Depends(get_user_id),  admin_user: User = Depends(require_admin)):
+async def creater(data: ReviewsCreateSchema, user_id : int = Depends(get_user_id)):
     return await create_controller(data, user_id)
 
 @reviews_router.put('/update/{id}', tags=['Reviews'], response_model=ReviewsResponseSchema)

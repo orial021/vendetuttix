@@ -13,6 +13,12 @@ async def get_controller(id: int):
         raise HTTPException(status_code=404, detail='not found')
     return category
 
+async def get_by_departament(departament_id : int):
+    category = await category_service.get_by_departament(departament_id)
+    if category is None:
+        raise HTTPException(status_code=404, detail='not found')
+    return category
+
 async def update_controller(id: int, data: CategoryCreateSchema):
     category = await category_service.update(id, data)
     if category is None:

@@ -3,43 +3,49 @@
 <head>
     <meta charset="UTF-8"name="viewport"
     content="viewport-fit=cover, width=device-width, initial-scale=1.0">
+ 
     <title>{% block title %}Vendetuttix{% endblock %}</title>
     <link rel="icon" href="{{ url_for('static', path='/images/favicon2.jpg') }}" type="image/jpeg">
-    <link rel="stylesheet" href="/static/css/output.css">
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
-    <header class="text-primary-foreground py-4 px-6">
-        <nav class="hidden md:flex items-center space-x-6">
-        <div class="container mx-auto flex items-center justify-between">
-            <div class="w-30">
-            <a class="text-5xl font-bold" href="/">
-                Inicio
-            </a>
+  <header class="text-primary-foreground py-4 px-6">
+    <nav class="hidden md:flex items-center space-x-6">
+      <div class="container mx-auto flex items-center justify-between">
+        <div class="w-30 flex items-center">
+          <img class="ml-4 mr-4" src="{{ url_for('static', path='images/default.jpg') }}" alt="Vendetuttix" width="120" height="90">
+          <a class="text-5xl font-bold ml-4" href="/">Inicio</a>
         </div>
-        <div class="space-x-8">
+        </div>
+        <div class="space-x-8 flex">
+          
           <nav>
             <ul class="menu">
-              <li><a href="#">Catálogo</a>
-                <ul class="submenu">
-                  <li><a href="">Departamento</a></li>
-                  <li><a href="#">Categoría</a></li>
-                  <li><a href="#">Productos</a></li>
+              <li class="relative group">
+                <a href="#" class="group-hover:text-accent">
+                  Catálogo
+                </a>
+                <ul class="submenu bg-cream rounded-lg shadow-md absolute top-full hidden group-hover:block">
+                  <li><a href="/home/departament" class="text-primary-foreground">Departamento</a></li>
+                  <li><a href="#" class="text-primary-foreground">Categoría</a></li>
+                  <li><a href="#" class="text-primary-foreground">Productos</a></li>
                 </ul>
               </li>
             </ul>
           </nav>
-          <a class="hover:text-accent" href="#">
-            Información
-          </a>
-          <a class="hover:text-accent" href="#">
-            Contacto
-          </a>
+          <nav>
+            <a class="hover:text-accent" href="/home/contact">
+              Contacto
+            </a>
+          </nav>
         </div>
-        
-        </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
+  
+  
+  
 
     <main>
         {% block content %}{% endblock %}

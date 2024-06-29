@@ -8,7 +8,7 @@ from routers.user.auth_router import require_admin
 product_router = APIRouter()
 
 @product_router.get('/all', tags=['Product'], response_model=List[ProductResponseSchema])
-async def all(offset: int = 0, limit: int = 10, order_by: str = "name"):
+async def all(offset: int = 0, limit: int = 12, order_by: str = "name"):
     return await get_all_controller(offset, limit, order_by)
 
 @product_router.get('/show/{id}', tags=['Product'], response_model=ProductResponseSchema)
@@ -17,7 +17,7 @@ async def show(id: int):
 
 
 @product_router.get('/showByCategory/{categoryId}', tags=['Product'], response_model=List[ProductResponseSchema])
-async def show_by_id(categoryId : int, offset: int = 0, limit: int = 10, order_by: str = "name"):
+async def show_by_id(categoryId : int, offset: int = 0, limit: int = 12, order_by: str = "name"):
     return await get_by_category(categoryId, offset, limit, order_by)
 
 @product_router.get('/showFeatured/{is_featured}', tags=['Product'], response_model=List[ProductResponseSchema])

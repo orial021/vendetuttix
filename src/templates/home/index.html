@@ -17,7 +17,7 @@
 
 <section class="py-5 md:py-12 flex justify-center items-center bg-light">
   <div class="container flex flex-col items-center min-h-[100vh]">
-    <p class="text-4xl md:text-6xl font-bold mb-5" style="font-size: 6rem;">Productos destacados</p>
+    <p class="text-4xl md:text-6xl font-bold mb-5" style="font-size: 5rem;">Productos destacados</p>
     <div class="product-columns" id="product-list"></div>
   </div>
 </section>
@@ -27,8 +27,6 @@
 
 
           <script>
-
-
             async function fetchAndDisplayBanners() {
               try {
                 const response = await fetch("/banner/show/1");
@@ -52,7 +50,7 @@
                     height="600"
                     class="rounded-lg object-cover"
                     style="aspect-ratio: 800 / 600; object-fit: cover;"
-                  />
+                  >
                 `;
                 bannerContainer2.innerHTML = bannerHtml2;
               } catch (error) {

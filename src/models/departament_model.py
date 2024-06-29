@@ -8,6 +8,7 @@ class Departament(Model):
     description = fields.TextField()
     is_active = fields.BooleanField()
     image_url = fields.CharField(max_length=255, null=True)
+    link = fields.CharField(max_length=100, null=True)
     
     
     

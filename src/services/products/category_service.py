@@ -24,6 +24,9 @@ class CRUDService(Generic[T, M]):
         cosa = await self.model.get_or_none(id=id)
         print(cosa)
         return cosa
+    
+    async def get_by_departament(self, departament_id: int):
+        return await self.model.filter(departament_id=departament_id).all()
 
     async def update(self, id: int, data: T):
         instance = await self.get_by_id(id)

@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Vendetuttix{% endblock %}
+
+{% block content %}
+<main>
+    <section class="py-5 md:py-12 flex justify-center items-center bg-light">
+        <div class="container flex flex-col items-center min-h-[100vh]">
+          <p class="text-4xl md:text-6xl font-bold mb-5" style="font-size: 5rem;">DEPARTAMENTOS</p>
+          <div class="dept-columns" id="dept-list"></div>
+
+          </div>
+      </section>
+      
+  
+  <script>
+    async function fetchAndDisplayDept() {
+        const response = await fetch("/departament/all");
+        const depts = await response.json();
+        const deptContainer = document.getElementById("dept-list");
+      
+        depts.forEach(dept => {
+          const item = document.createElement("div");
+          item.classList.add("dept-item");
+          item.innerHTML = `
+          <a href="/home/categoryByDepartament/${dept.id}">
+          <div class="products bg-background rounded-lg shadow-sm overflow-hidden">
+            <img 
+              src="${dept.image_url}" 
+              alt="${dept.title}" 
+              style="aspect-ratio: 400 / 300; object-fit: cover;">
+            <h1 class="text-5xl md:text-5xl font-bold mb-4">${dept.title}</h1>
+            <p class="text-4xl text-muted-foreground mb-8">${dept.description}</p>
+        
+            </div>
+            </a>
+          `;
+          deptContainer.appendChild(item);
+        });
+      }
+      fetchAndDisplayDept();
+
+</script>
+</main>
+
+{% endblock%}

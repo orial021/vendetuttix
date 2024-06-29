@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 class Contact(BaseModel):
     id : int
-    user_id : int
+    user_id : int | None = None
     name: str
     email : Optional[str]
     phone : Optional[str]
@@ -30,7 +30,7 @@ class Contact(BaseModel):
     }
 
 class ContactCreateSchema(BaseModel):
-    user_id : int
+    user_id : int  | None = None
     name: str
     email : Optional[str]
     phone : Optional[str]

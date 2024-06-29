@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Vendetuttix{% endblock %}
+
+{% block content %}
+
+<main>
+
+<section class="bg-ivory p-8 flex justify-center items-center h-screen">
+    <div class="container mx-auto w-full max-w-md m-160">
+      <form action="/contact/create" method="POST">
+        <div class="mb-4 p-100">
+          <label for="name" class="text-xl font-semibold">Nombre</label>
+          <input type="text" id="name" name="name" placeholder="Tu nombre.." class="w-full p-2 border rounded-lg">
+        </div>
+    
+        <div class="mb-4">
+          <label for="email" class="text-xl font-semibold">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="Tu correo.." class="w-full p-2 border rounded-lg">
+        </div>
+    
+        <div class="mb-4">
+          <label for="phone" class="text-xl font-semibold">Teléfono</label>
+          <input type="tel" id="phone" name="phone" placeholder="Tu teléfono.." class="w-full p-2 border rounded-lg">
+        </div>
+    
+        <div class="mb-4">
+          <label for="subject" class="text-xl font-semibold">Asunto</label>
+          <input type="text" id="subject" name="subject" placeholder="Escribe algo.." class="w-full p-2 border rounded-lg">
+        </div>
+    
+        <div class="mb-4">
+          <label for="message" class="text-xl font-semibold">Mensaje</label>
+          <textarea id="message" name="message" placeholder="Escribe tu mensaje.." style="height:200px" class="w-full p-2 border rounded-lg"></textarea>
+        </div>
+    
+        <input type="submit" value="Enviar" class="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer">
+      </form>
+    </div>
+  </section>
+</main>  
+
+
+
+  
+{% endblock %}

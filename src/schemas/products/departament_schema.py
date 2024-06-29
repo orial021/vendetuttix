@@ -10,6 +10,7 @@ class Departament(BaseModel):
     departament_id: str | None = None
     is_active: bool
     image_url: str
+    link: str
 
 
     model_config = { 
@@ -18,9 +19,9 @@ class Departament(BaseModel):
                 'id':1,
                 'title':'string',
                 'description':'string',
-                'departament_id':'string',
                 'is_active':'True',
                 'image_url':'string',
+                'link':'string'
             }
         }
     }
@@ -31,6 +32,7 @@ class DepartamentCreateSchema(BaseModel):
     departament_id: str | None = None
     is_active: bool
     image_url: str
+    link: str
 
 
     model_config = { 
@@ -38,9 +40,9 @@ class DepartamentCreateSchema(BaseModel):
             'example':{
                 'title':'string',
                 'description':'string',
-                'departament_id':'string',
                 'is_active':'True',
                 'image_url':'string',
+                'link':'string'
             }
         }
     }
@@ -58,9 +60,9 @@ class DepartamentResponseSchema(DepartamentCreateSchema):
                 'id':1,
                 'title':'string',
                 'description':'string',
-                'departament_id':'string',
                 'is_active':'True',
                 'image_url':'string',
+                'link':'string'
             }
         }
     }

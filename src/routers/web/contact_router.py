@@ -15,8 +15,9 @@ async def all():
 async def show(id: int):
     return await get_controller(id)
 
+
 @contact_router.post('/create', tags=['Contact'], response_model=ContactResponseSchema)
-async def creater(data: ContactCreateSchema, admin_user: User = Depends(require_admin)):
+async def creater(data: ContactCreateSchema,):
     return await create_controller(data)
 
 @contact_router.put('/update/{id}', tags=['Contact'], response_model=ContactResponseSchema)

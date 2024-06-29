@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Vendetuttix{% endblock %}
+
+{% block content %}
+
+<main>
+    <section class="py-5 md:py-12 flex justify-center items-center bg-light">
+        <div class="container flex flex-col items-center min-h-[100vh]">
+          <p class="text-4xl md:text-6xl font-bold mb-5" style="font-size: 5rem;">VENTILADORES</p>
+          <div class="columns" id="product-list"></div>
+
+          </div>
+      </section>
+      
+  
+  <script>
+    async function fetchAndDisplay() {
+        const response = await fetch("/product/showByCategory/2?offset=0&limit=12&order_by=name");
+        const items = await response.json();
+        const itemContainer = document.getElementById("product-list");
+      
+        items.forEach(item => {
+          const element = document.createElement("div");
+          element.classList.add("dept-item");
+          element.innerHTML = `
+          <a href="/productByCategory/${item.id}">
+          <div class="products bg-background rounded-lg shadow-sm overflow-hidden">
+            <img 
+              src="${item.imagen_url}" 
+              alt="${item.title}" 
+              style="aspect-ratio: 400 / 300; object-fit: cover;">
+            <h1 class="text-5xl md:text-5xl font-bold mb-4">${item.name}</h1>
+            <p class="text-4xl text-muted-foreground mb-8">${item.short_description}</p>
+            <h2 class="text-5xl md:text-5xl font-bold mb-4">${item.price}</h2>
+        
+            </div>
+            </a>
+          `;
+          itemContainer.appendChild(element);
+        });
+      }
+      fetchAndDisplay();
+
+</script>
+</main>
+
+
+
+{% endblock%}
