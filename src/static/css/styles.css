@@ -1,11 +1,5 @@
 
 /* Estilo para la navegación */
-nav a {
-    background-color: #000000;
-    color: rgb(255, 253, 253);
-    font-size: 3rem;
-    /* Agrega más propiedades aquí según tus necesidades */
-}
 
 body {
     font-family: var(--font-caudex), serif;
@@ -18,11 +12,15 @@ h2, h3, h4, h5, h6 {
   }
 
 header {
-  background-color: #000000;
+  background-color: #131313;
+  background: linear-gradient(321deg, rgba(92,224,229,1) 41%, rgba(19,19,19,1)64%);
 }
 p   {
-    color: black;
-    font-size: 2rem;
+  color: #3c403d;
+  font-size: 2rem;
+}
+.text-gray {
+  color: #3c403d;
 }
 h1 {
   font-family: var(--font-prata), serif;
@@ -126,8 +124,7 @@ h1 {
   top: 100%;
   left: 0;
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 10px; /* Añadido para mejorar el espaciado */
+  /*padding: 10px;  Añadido para mejorar el espaciado */
   z-index: 10;
 }
 
@@ -137,13 +134,21 @@ h1 {
 
 
 /* Estilo para la navegación */
-nav a {
-  background-color: #000000;
+nav > a, nav ul.menu > li > a, nav {
+  /* background-color: #131313; */
   color: rgb(255, 253, 253);
   font-size: 3rem;
   /* Agrega más propiedades aquí según tus necesidades */
 }
-
+nav ul.submenu a {
+  color: #131313;
+  font-size: 24px;
+  display: block;
+}
+nav ul.submenu a:hover {
+  background-color: #131313;
+  color: white;
+}
 /* Estilo para las listas */
 ul, li {
   list-style: none;
@@ -163,8 +168,6 @@ ul a {
   top: 100%;
   left: 0;
   background-color: ivory;
-  border: 1px solid #ddd;
-  padding: 10px;
   /* Añade más estilos según tus preferencias */
 }
 

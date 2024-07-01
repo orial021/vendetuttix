@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8"name="viewport"
     content="viewport-fit=cover, width=device-width, initial-scale=1.0">
- 
     <title>{% block title %}Vendetuttix{% endblock %}</title>
     <link rel="icon" href="{{ url_for('static', path='/images/favicon2.jpg') }}" type="image/jpeg">
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <link rel="stylesheet" href="../static/css/app.css">
-    <link rel="stylesheet" href="../static/css/tailwindcss.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/app.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/tailwindcss.css') }}"/>
 </head>
 <body>
   <header class="text-primary-foreground py-4 px-6">
@@ -27,10 +26,10 @@
                 <a href="#" class="group-hover:text-accent">
                   Catálogo
                 </a>
-                <ul class="submenu bg-cream rounded-lg shadow-md absolute top-full hidden group-hover:block z-10">
-                  <li><a href="/home/departament" class="text-primary-foreground">Departamento</a></li>
-                  <li><a href="#" class="text-primary-foreground">Categoría</a></li>
-                  <li><a href="#" class="text-primary-foreground">Productos</a></li>
+                <ul class="submenu bg-cream rounded-lg shadow-md absolute top-full hidden group-hover:block z-10 py-0 w-64">
+                  <li class="w-full"><a href="/home/departament" class="text-primary-foreground rounded px-4 w-full">Departamento</a></li>
+                  <li class="w-full"><a href="#" class="text-primary-foreground rounded px-4 w-full">Categoría</a></li>
+                  <li class="w-full"><a href="#" class="text-primary-foreground rounded px-4 w-full">Productos</a></li>
                 </ul>
               </li>
             </ul>
