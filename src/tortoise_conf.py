@@ -1,6 +1,6 @@
 TORTOISE_ORM = {
     "connections": {
-        "default": "postgres://postgres:2354@localhost:5432/fastAPI"
+        "default": "postgres://postgres:Italo1234*@localhost:5432/fastApi"
     },
     "apps": {
         "models": {

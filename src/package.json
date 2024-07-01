@@ -13,6 +13,6 @@
     "mi:g": "aerich migrate",
     "mi:u": "aerich upgrade",
     "CRUD:g": "pithon3 src/CRUDFactory.py",
-    "tailwind": "npx tailwindcss -i ./static/css/app.css -o ./static/css/app.css --watch"
+    "tailwind": "npx tailwindcss -i ./static/css/app.css -o ./static/css/tailwindcss.css --watch"
   }
 }

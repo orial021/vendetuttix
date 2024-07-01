@@ -20,7 +20,7 @@ async def show(id: int):
 async def show_by_id(categoryId : int, offset: int = 0, limit: int = 12, order_by: str = "name"):
     return await get_by_category(categoryId, offset, limit, order_by)
 
-@product_router.get('/showFeatured/{is_featured}', tags=['Product'], response_model=List[ProductResponseSchema])
+@product_router.get('/showFeatured/{is_featured}', tags=['Product'], name="show_featured_products", response_model=List[ProductResponseSchema])
 async def show_featured(is_featured: bool = True, offset: int = 0, limit: int = 4, order_by: str = "updated_at"):
     return await get_featured(is_featured, offset, limit, order_by)
 
