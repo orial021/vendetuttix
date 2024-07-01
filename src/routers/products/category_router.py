@@ -7,7 +7,7 @@ from routers.user.auth_router import require_admin
 
 category_router = APIRouter()
 
-@category_router.get('/all', tags=['Category'], response_model=List[CategoryResponseSchema])
+@category_router.get('/all', name="category_all", tags=['Category'], response_model=List[CategoryResponseSchema])
 async def all():
     return await get_all_controller()
 
@@ -15,7 +15,7 @@ async def all():
 async def show(id: int):
     return await get_controller(id)
 
-@category_router.get('/showBydepartament/{departamentId}', tags=['Category'], response_model=List[CategoryResponseSchema])
+@category_router.get('/showBydepartament/{departamentId}', name="show_category_by_departament", tags=['Category'], response_model=List[CategoryResponseSchema])
 async def show_by_id(departamentId : int):
     return await get_by_departament(departamentId)
 

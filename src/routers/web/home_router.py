@@ -28,13 +28,43 @@ async def index(request: Request):
 @home_router.get('/productByCategory/{categoryId}', tags=['Home'])
 async def index(categoryId: int, request:Request):
     async with httpx.AsyncClient() as client:
-        url = request.url_for("show_by_category", category_id=categoryId)
+        url = request.url_for("show_by_category", categoryId=categoryId)
         response = await client.get(str(url), params={"categoryId": int, "offset": 0, "limit": 4, "order_by": "name"})
         products = response.json()
     if not isinstance(products, list):
         raise ValueError("Expected a list of products")
-    print(products)
     return templates.TemplateResponse('home/products.html', {'request': request, 'products': products})
+
+@home_router.get('/categoryByDepartament/{departamentId}', tags=['Home'])
+async def index(departamentId: int, request:Request):
+    async with httpx.AsyncClient() as client:
+        url = request.url_for("show_category_by_departament", departamentId=departamentId)
+        response = await client.get(str(url), params={"departamentId": int})
+        categories = response.json()
+    if not isinstance(categories, list):
+        raise ValueError("Expected a list of products")
+    return templates.TemplateResponse('home/categories.html', {'request': request, 'categories': categories})
+
+@home_router.get('/categoryAll', tags=['Home'])
+async def index(request:Request):
+    async with httpx.AsyncClient() as client:
+        url = request.url_for("category_all")
+        response = await client.get(str(url))
+        categories = response.json()
+    if not isinstance(categories, list):
+        raise ValueError("Expected a list of products")
+    return templates.TemplateResponse('home/categoryALl.html', {'request': request, 'categories': categories})
+
+@home_router.get('/productAll', tags=['Home'])
+async def index(request:Request):
+    async with httpx.AsyncClient() as client:
+        url = request.url_for("product_all")
+        response = await client.get(str(url))
+        products = response.json()
+    if not isinstance(products, list):
+        raise ValueError("Expected a list of products")
+    return templates.TemplateResponse('home/productALl.html', {'request': request, 'products': products})
+
 
 @home_router.get('/productComponent', tags=['Home'])
 def index(request: Request):
@@ -48,16 +78,8 @@ def index(request: Request):
 def index(request:Request):
     return templates.TemplateResponse('home/departament.html', {'request': request})
 
-@home_router.get('/categoryByDepartament/1', tags=['Home'])
-def index(request:Request):
-    return templates.TemplateResponse('home/category1.html', {'request': request})
-
-@home_router.get('/categoryByDepartament/2', tags=['Home'])
-def index(request:Request):
-    return templates.TemplateResponse('home/category2.html', {'request': request})
 
 
 
-@home_router.get('/productByCategory/2', tags=['Home'])
-def index(request:Request):
-    return templates.TemplateResponse('home/products2.html', {'request': request})
+
+

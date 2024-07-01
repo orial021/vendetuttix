@@ -8,7 +8,7 @@ from templates import templates
 
 product_router = APIRouter()
 
-@product_router.get('/all', tags=['Product'], response_model=List[ProductResponseSchema])
+@product_router.get('/all', name="product_all", tags=['Product'], response_model=List[ProductResponseSchema])
 async def all(offset: int = 0, limit: int = 12, order_by: str = "name"):
     return await get_all_controller(offset, limit, order_by)
 
@@ -23,9 +23,11 @@ async def product_detail(request: Request, product_id: int):
         raise HTTPException(status_code=404, detail="Product not found")
     return templates.TemplateResponse('product/product_detail.html', {'request': request, 'product': product})
 
-@product_router.get('/showByCategory/{categoryId}', tags=['Product'], name="show_by_category", response_model=List[ProductResponseSchema])
+
+@product_router.get('/productByCategory/{categoryId}', tags=['Product'], name="show_by_category", response_model=List[ProductResponseSchema])
 async def show_by_id(categoryId : int, offset: int = 0, limit: int = 12, order_by: str = "name"):
     return await get_by_category(categoryId, offset, limit, order_by)
+
 
 @product_router.get('/showFeatured/{is_featured}', tags=['Product'], name="show_featured_products", response_model=List[ProductResponseSchema])
 async def show_featured(is_featured: bool = True, offset: int = 0, limit: int = 4, order_by: str = "updated_at"):
