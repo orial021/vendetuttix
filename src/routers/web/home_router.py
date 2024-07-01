@@ -1,3 +1,4 @@
+import httpx
 from fastapi import APIRouter, Request
 from fastapi.responses import FileResponse, RedirectResponse, PlainTextResponse
 from templates import templates
@@ -15,8 +16,15 @@ def home():
     return "<p>Hello Jairo</p>"
 
 @home_router.get('/page', tags=['Home'])
-def index(request: Request):
-    return templates.TemplateResponse('home/index.html', {'request': request})
+async def index(request: Request):
+    async with httpx.AsyncClient() as client:
+        url = request.url_for("show_featured_products", is_featured=True)
+        response = await client.get(str(url), params={"offset": 0, "limit": 4, "order_by": "updated_at"})
+        products = response.json()
+    if not isinstance(products, list):
+        raise ValueError("Expected a list of products")
+    print(products)
+    return templates.TemplateResponse('home/index.html', {'request': request, 'products': products})
 
 @home_router.get('/productComponent', tags=['Home'])
 def index(request: Request):

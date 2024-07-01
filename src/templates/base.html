@@ -6,8 +6,9 @@
  
     <title>{% block title %}Vendetuttix{% endblock %}</title>
     <link rel="icon" href="{{ url_for('static', path='/images/favicon2.jpg') }}" type="image/jpeg">
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/app.css">
+    <link rel="stylesheet" href="../static/css/tailwindcss.css">
 </head>
 <body>
   <header class="text-primary-foreground py-4 px-6">
@@ -26,7 +27,7 @@
                 <a href="#" class="group-hover:text-accent">
                   Catálogo
                 </a>
-                <ul class="submenu bg-cream rounded-lg shadow-md absolute top-full hidden group-hover:block">
+                <ul class="submenu bg-cream rounded-lg shadow-md absolute top-full hidden group-hover:block z-10">
                   <li><a href="/home/departament" class="text-primary-foreground">Departamento</a></li>
                   <li><a href="#" class="text-primary-foreground">Categoría</a></li>
                   <li><a href="#" class="text-primary-foreground">Productos</a></li>
