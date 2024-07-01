@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle del Producto{% endblock %}
+
+{% block content %}
+<section class="text-gray-700 body-font overflow-hidden bg-white">
+  <div class="container p-0 w-full">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap w-full">
+      <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src="{{ product.imagen_url }}" alt="{{ product.title }}">
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ product.name }}</h2>
+      </div>
+    </div>
+    <div class="lg:w-4/5 mx-auto flex flex-wrap w-full">
+      <div class="w-full">
+        <p class="leading-relaxed text-base">{{ product.long_description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
