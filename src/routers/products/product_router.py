@@ -1,9 +1,10 @@
 from typing import List
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, Request, HTTPException
 from models.user_model import User
 from schemas.products.product_schema import ProductCreateSchema, ProductResponseSchema
 from controllers.products.product_controller import create_controller, get_all_controller, get_controller, update_controller, delete_controller, get_by_category, get_featured
 from routers.user.auth_router import require_admin
+from templates import templates
 
 product_router = APIRouter()
 
@@ -15,6 +16,12 @@ async def all(offset: int = 0, limit: int = 12, order_by: str = "name"):
 async def show(id: int):
     return await get_controller(id)
 
+@product_router.get('/detail/{product_id}', tags=['Product'], response_model=ProductResponseSchema)
+async def product_detail(request: Request, product_id: int):
+    product = await get_controller(product_id)
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return templates.TemplateResponse('product/product_detail.html', {'request': request, 'product': product})
 
 @product_router.get('/showByCategory/{categoryId}', tags=['Product'], name="show_by_category", response_model=List[ProductResponseSchema])
 async def show_by_id(categoryId : int, offset: int = 0, limit: int = 12, order_by: str = "name"):

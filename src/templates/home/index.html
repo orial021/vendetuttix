@@ -22,7 +22,7 @@
       {% for product in products %}
         {% from 'components/product.html' import productComponent %}
         {{ productComponent({
-          "href":  "/home/productByCategory/" ~ product.id,
+          "href":  "/product/detail/" ~ product.id,
           "image_url": product.imagen_url,
           "title": product.name,
           "description": product.short_description,
