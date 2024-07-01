@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "main": "app.py",
   "scripts": {
-    "dev": "fastapi dev app.py --reload ; npx tailwindcss -i ./static/css/app.css -o ./static/css/app.css --watch",
+    "dev": "fastapi dev app.py --reload && npx tailwindcss -i ./static/css/app.css -o ./static/css/app.css --watch",
     "fastapi-prod": "fastapi run app.py",
     "build": "pip3 install -r src/requeriments.txt",
     "mi:g": "aerich migrate",
