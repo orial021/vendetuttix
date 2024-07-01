@@ -16,7 +16,7 @@ async def show(id: int):
     return await get_controller(id)
 
 
-@product_router.get('/showByCategory/{categoryId}', tags=['Product'], response_model=List[ProductResponseSchema])
+@product_router.get('/showByCategory/{categoryId}', tags=['Product'], name="show_by_category", response_model=List[ProductResponseSchema])
 async def show_by_id(categoryId : int, offset: int = 0, limit: int = 12, order_by: str = "name"):
     return await get_by_category(categoryId, offset, limit, order_by)
 
