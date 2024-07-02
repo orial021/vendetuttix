@@ -9,23 +9,22 @@
   <section class="py-5 md:py-12 flex justify-center items-center bg-light">
     <div class="container flex flex-col items-center min-h-[100vh]">
       <p class="text-4xl md:text-6xl font-bold mb-5" style="font-size: 5rem;">PRODUCTOS</p>
-      <div class="product-columns" id="product-list">
+      <div class="product-grid" id="product-list">
         {% for product in products %}
           {% from 'components/product.html' import productComponent %}
-          {{ productComponent({
-            "href":  "/product/detail/" ~ product.id,
-            "image_url": product.imagen_url,
-            "title": product.name,
-            "description": product.short_description,
-            "price": product.price
-          }) }}
+          <div class="product-item">
+            {{ productComponent({
+              "href":  "/product/detail/" ~ product.id,
+              "image_url": product.imagen_url,
+              "title": product.name,
+              "description": product.short_description,
+              "price": product.price
+            }) }}
+          </div>
         {% endfor %}
       </div>
     </div>
   </section>
-      
-  
-
 </main>
 
 
