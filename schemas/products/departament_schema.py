@@ -7,7 +7,7 @@ class Departament(BaseModel):
     id: int
     title: str
     description: str
-    departament_id: str | None = None
+    departament_id: Optional[str] = None
     is_active: bool
     image_url: str
     link: str
@@ -29,7 +29,7 @@ class Departament(BaseModel):
 class DepartamentCreateSchema(BaseModel):
     title: str
     description: str
-    departament_id: str | None = None
+    departament_id: Optional[str] = None
     is_active: bool
     image_url: str
     link: str
@@ -51,7 +51,7 @@ class DepartamentResponseSchema(DepartamentCreateSchema):
     id: int
     created_at: datetime
     updated_at: datetime
-    deleted_at: datetime | None = None
+    deleted_at: Optional[datetime] = None
 
 
     model_config = { 

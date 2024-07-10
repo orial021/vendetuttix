@@ -8,8 +8,8 @@ class Banner(BaseModel):
     title : str
     image_url : str
     content : str
-    status : Optional[bool]
-    click_count : Optional[int]
+    status : Optional[bool] = None
+    click_count : Optional[int] = None
     
     model_config = {
         'json_schema_extra':{
@@ -28,15 +28,15 @@ class BannerCreateSchema(BaseModel):
     title: str
     image_url: str
     content: str
-    status: bool | None = None 
-    click_count: int | None = None
+    status: Optional[bool] = None
+    click_count: Optional[int] = None
     
     
 class BannerResponseSchema(BannerCreateSchema):
     id: int
     created_at: datetime
     updated_at: datetime
-    deleted_at: datetime | None = None
+    deleted_at: Optional[datetime] = None
     
     model_config = {
         'json_schema_extra':{

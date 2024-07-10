@@ -5,10 +5,10 @@ from pydantic import BaseModel
 
 class Contact(BaseModel):
     id : int
-    user_id : int | None = None
+    user_id : Optional[int] = None
     name: str
-    email : Optional[str]
-    phone : Optional[str]
+    email : Optional[str] = None
+    phone : Optional[str] = None
     subject : str
     message : str
     
@@ -30,10 +30,10 @@ class Contact(BaseModel):
     }
 
 class ContactCreateSchema(BaseModel):
-    user_id : int  | None = None
+    user_id : Optional[int] = None
     name: str
-    email : Optional[str]
-    phone : Optional[str]
+    email : Optional[str] = None
+    phone : Optional[str] = None
     subject : str
     message : str
     
@@ -56,7 +56,7 @@ class ContactResponseSchema(ContactCreateSchema):
     id: int
     created_at: datetime
     updated_at: datetime
-    deleted_at: datetime | None = None
+    deleted_at: Optional[datetime] = None
     
     model_config = {
         'json_schema_extra':{

@@ -7,8 +7,8 @@ class Content(BaseModel):
     id : int
     title : str
     description : str
-    url : Optional[str]
-    image_url : Optional[str]
+    url : Optional[str] = None
+    image_url : Optional[str] = None
     
     
     
@@ -28,8 +28,8 @@ class ContentCreateSchema(BaseModel):
     title: str
     image_url: str
     description: str
-    url : str | None = None
-    image_url : str | None = None
+    url : Optional[str] = None
+    image_url : Optional[str] = None
     
     model_config = {
         'json_schema_extra':{
@@ -46,7 +46,7 @@ class ContentResponseSchema(ContentCreateSchema):
     id: int
     created_at: datetime
     updated_at: datetime
-    deleted_at: datetime | None = None
+    deleted_at: Optional[datetime] = None
     
     model_config = {
         'json_schema_extra':{

@@ -8,8 +8,8 @@ class Reviews(BaseModel):
     title : str
     description : str
     rating : int
-    user_id : int | None = None
-    related_product : int | None = None
+    user_id : Optional[int] = None
+    related_product : Optional[int] = None
     
     
     
@@ -30,8 +30,8 @@ class ReviewsCreateSchema(BaseModel):
     title : str
     description : str
     rating : int
-    user_id : int | None = None
-    related_product : int | None = None
+    user_id : Optional[int] = None
+    related_product : Optional[int] = None
     
     model_config = {
         'json_schema_extra':{
@@ -49,7 +49,7 @@ class ReviewsResponseSchema(ReviewsCreateSchema):
     id: int
     created_at: datetime
     updated_at: datetime
-    deleted_at: datetime | None = None
+    deleted_at: Optional[datetime] = None
     
     model_config = {
         'json_schema_extra':{

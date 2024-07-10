@@ -10,9 +10,9 @@ class Product(BaseModel):
     long_description: str
     price: float
     promo_price: float
-    init_promotional_date: datetime | None = None
-    end_promotional_date: datetime | None = None
-    tax: float | None = None
+    init_promotional_date: Optional[datetime] = None
+    end_promotional_date: Optional[datetime] = None
+    tax: Optional[float] = None
     quantity: int
     is_active: bool
     is_featured: bool
@@ -49,9 +49,9 @@ class ProductCreateSchema(BaseModel):
     long_description: str
     price: float
     promo_price: float
-    init_promotional_date: datetime | None = None
-    end_promotional_date: datetime | None = None
-    tax: float | None = None
+    init_promotional_date: Optional[datetime] = None
+    end_promotional_date: Optional[datetime] = None
+    tax: Optional[float] = None
     quantity: int
     is_active: bool
     is_featured: bool
@@ -85,7 +85,7 @@ class ProductResponseSchema(ProductCreateSchema):
     id: int
     created_at: datetime
     updated_at: datetime
-    deleted_at: datetime | None = None
+    deleted_at: Optional[datetime] = None
 
 
     model_config = { 
