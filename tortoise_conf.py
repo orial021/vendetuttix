@@ -1,4 +1,4 @@
-'''TORTOISE_ORM = {
+TORTOISE_ORM = {
     "connections": {
         "default": "postgres://postgres:2354@localhost:5432/fastAPI"
     },
@@ -8,9 +8,9 @@
             "default_connection": "default",
         },
     },
-}'''
+}
 
-TORTOISE_ORM = {
+'''TORTOISE_ORM = {
     "connections": {
         "default": "postgres://jairo:2354@localhost:5432/fastapi"
     },
@@ -20,4 +20,4 @@ TORTOISE_ORM = {
             "default_connection": "default",
         },
     },
-}
+}'''

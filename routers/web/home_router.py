@@ -53,7 +53,7 @@ async def index(request:Request):
         categories = response.json()
     if not isinstance(categories, list):
         raise ValueError("Expected a list of products")
-    return templates.TemplateResponse('home/categoryALl.html', {'request': request, 'categories': categories})
+    return templates.TemplateResponse('home/categoryAll.html', {'request': request, 'categories': categories})
 
 @home_router.get('/productAll', tags=['Home'])
 async def index(request:Request):
@@ -63,7 +63,7 @@ async def index(request:Request):
         products = response.json()
     if not isinstance(products, list):
         raise ValueError("Expected a list of products")
-    return templates.TemplateResponse('home/productALl.html', {'request': request, 'products': products})
+    return templates.TemplateResponse('home/productAll.html', {'request': request, 'products': products})
 
 
 @home_router.get('/productComponent', tags=['Home'])
