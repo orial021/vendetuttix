@@ -16,7 +16,7 @@ async def show(id: int):
     return await get_controller(id)
 
 @admin_router.post('/create', tags=['Admin'], response_model=AdminResponseSchema)
-async def creater(data: AdminCreateSchema):
+async def creater(data: AdminCreateSchema, admin_user: User = Depends(require_admin)):
     return await create_controller(data)
 
 @admin_router.put('/update/{id}', tags=['Admin'], response_model=AdminResponseSchema)

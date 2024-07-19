@@ -15,6 +15,7 @@ class CRUDService(Generic[T, M]):
 
     
     async def create(self, data: T):
+        print(data)
         return await self.model.create(**data.model_dump())
 
     async def get_all(self):

@@ -4,7 +4,7 @@ import uuid
 
 
 class Admin(Model):
-    id = fields.IntField(pk=True, default = uuid.uuid4)
+    id = fields.IntField(pk=True, max_length=36)
     username = fields.CharField(max_length=20, unique=True)
     password = fields.CharField(max_length=128)
     is_active = fields.BooleanField(default=True)

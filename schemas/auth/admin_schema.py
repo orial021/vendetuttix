@@ -1,4 +1,5 @@
 from enum import Enum
+import uuid
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
@@ -7,16 +8,16 @@ class Admin(BaseModel):
     id: int
     username: str
     password: str
-    is_active: bool
+    is_active: Optional[bool] = True
 
 
     model_config = { 
        'json_schema_extra':{
             'example':{
-                'id':1,
+                'id':'1',
                 'username':'string',
                 'password':'string',
-                'is_active':'True',
+                'is_active': True,
             }
         }
     }
@@ -24,7 +25,7 @@ class Admin(BaseModel):
 class AdminCreateSchema(BaseModel):
     username: str
     password: str
-    is_active: bool
+    is_active: Optional[bool] = True
 
 
     model_config = { 
@@ -32,7 +33,7 @@ class AdminCreateSchema(BaseModel):
             'example':{
                 'username':'string',
                 'password':'string',
-                'is_active':'True',
+                'is_active': True,
             }
         }
     }
@@ -47,10 +48,10 @@ class AdminResponseSchema(AdminCreateSchema):
     model_config = { 
        'json_schema_extra':{
             'example':{
-                'id':1,
+                'id':'1',
                 'username':'string',
                 'password':'string',
-                'is_active':'True',
+                'is_active': True,
             }
         }
     }

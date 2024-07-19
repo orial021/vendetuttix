@@ -13,6 +13,20 @@ class CRUDService(Generic[T, M]):
         self.model = model
         self.schema = schema
 
+    '''async def create(self, data: T):
+        print("Datos recibidos:", data)
+        if 'password' in data.model_dump():
+            data.password = bcrypt.hashpw(data.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        try:
+            new_instance = await self.model.create(**data.model_dump())
+            print("Nueva instancia creada:", new_instance)
+            return new_instance
+        except Exception as e:
+            print("Error al crear la instancia:", e)
+            print("Datos que causaron el error:", data)
+            raise e'''
+        
+        
     async def create(self, data: T):
         return await self.model.create(**data.model_dump())
 

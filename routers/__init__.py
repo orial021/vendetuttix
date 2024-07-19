@@ -23,6 +23,6 @@ routers = [
     (category_router, '/category'),
     (departament_router, '/departament'),
     (product_router, '/product'),
-    (admin_router, '/admint'),
+    (admin_router, '/admin'),
     
 ] 

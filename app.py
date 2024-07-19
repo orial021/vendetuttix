@@ -13,15 +13,13 @@ from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
+from admin_config import init_admin
 from routers import routers
 from tortoise.contrib.fastapi import register_tortoise
 from utils.http_error_handler import HTTPErrorHandler
 from dotenv import load_dotenv
 from tortoise_conf import TORTOISE_ORM
 
-from fastapi_admin.app import app as admin_app, FastAPIAdmin
-from fastapi_admin.providers.login import UsernamePasswordProvider
-from models.admin_model import Admin
 from tortoise import Tortoise
 
 
@@ -30,7 +28,6 @@ app = FastAPI()
 app.add_middleware(HTTPErrorHandler)
 load_dotenv()
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -43,20 +40,6 @@ app.add_middleware(
 app.title = 'Mi modelo fastAPI'
 app.version = '1.0.0'
 
-
-admin_app = FastAPIAdmin(
-    admin_path='/panel',
-    logo_url="https://example.com/logo.png",
-    login_logo_url="https://example.com/login_logo.png",
-    providers=[
-        UsernamePasswordProvider(
-            admin_model=Admin,
-            login_logo_url="https://example.com/login_logo.png",
-        )
-    ],
-)
-app.mount('/panel', admin_app)
-
 register_tortoise(
     app,
     config = TORTOISE_ORM,
@@ -66,9 +49,7 @@ register_tortoise(
 
 @app.on_event("startup")
 async def startup():
-    await Tortoise.init(config=TORTOISE_ORM)
-    await admin_app._register_providers()
-
+    await init_admin(app)
 
 for router, prefix in routers:
     app.include_router(router, prefix=prefix)
@@ -79,6 +60,3 @@ def go_home():
     return RedirectResponse('/home/page')
 
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
