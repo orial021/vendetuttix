@@ -8,16 +8,21 @@
 #tailwind npx tailwindcss -i .\static\css\app.css -o .\static\css\app.css --watch
 #entorno virtual venv\Scripts\Activate.ps1 
 
-
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+
 from routers import routers
 from tortoise.contrib.fastapi import register_tortoise
 from utils.http_error_handler import HTTPErrorHandler
 from dotenv import load_dotenv
-from fastapi.middleware.cors import CORSMiddleware
 from tortoise_conf import TORTOISE_ORM
+
+from fastapi_admin.app import app as admin_app, FastAPIAdmin
+from fastapi_admin.providers.login import UsernamePasswordProvider
+from models.admin_model import Admin
+from tortoise import Tortoise
 
 
 app = FastAPI()
@@ -26,9 +31,6 @@ app.add_middleware(HTTPErrorHandler)
 load_dotenv()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-origins = [
-    "http://localhost:3000",
-]
 
 app.add_middleware(
     CORSMiddleware,
@@ -42,6 +44,19 @@ app.title = 'Mi modelo fastAPI'
 app.version = '1.0.0'
 
 
+admin_app = FastAPIAdmin(
+    admin_path='/panel',
+    logo_url="https://example.com/logo.png",
+    login_logo_url="https://example.com/login_logo.png",
+    providers=[
+        UsernamePasswordProvider(
+            admin_model=Admin,
+            login_logo_url="https://example.com/login_logo.png",
+        )
+    ],
+)
+app.mount('/panel', admin_app)
+
 register_tortoise(
     app,
     config = TORTOISE_ORM,
@@ -49,9 +64,21 @@ register_tortoise(
     add_exception_handlers = True
 )
 
+@app.on_event("startup")
+async def startup():
+    await Tortoise.init(config=TORTOISE_ORM)
+    await admin_app._register_providers()
+
+
 for router, prefix in routers:
     app.include_router(router, prefix=prefix)
+
     
-@app.router.get('/', tags=['Home'])
+@app.get('/', tags=['Home'])
 def go_home():
     return RedirectResponse('/home/page')
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)

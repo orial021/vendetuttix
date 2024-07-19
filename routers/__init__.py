@@ -9,6 +9,7 @@ from routers.web.about_router import about_router
 from routers.products.category_router import category_router
 from routers.products.departament_router import departament_router
 from routers.products.product_router import product_router
+from routers.auth.admin_router import admin_router
 
 routers = [
     (home_router, '/home'),
@@ -22,5 +23,6 @@ routers = [
     (category_router, '/category'),
     (departament_router, '/departament'),
     (product_router, '/product'),
+    (admin_router, '/admint'),
     
 ] 

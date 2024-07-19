@@ -8,6 +8,7 @@ from .about_model import About
 from .product_model import Product
 from .category_model import Category
 from .departament_model import Departament
+from .admin_model import Admin
 
 
 __all__ = [
@@ -21,4 +22,5 @@ __all__ = [
     'Product',
     'Category',
     'Departament',
+    'Admin',
 ]
